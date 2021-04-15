@@ -1,7 +1,7 @@
-void gravity(char matrice[], int modif[], int numodif, int static[], int numstatic, int numl, int numc, int numite){
-  if (atoi(matrice[numl+1][numc]) < atoi(matrice[numl][numc])){
-    char temp = matrice[numl+1][numc];
-    matrice[numl+1][numc] = matrice[numl][numc];
+void gravity(char matrice[], int modif[], int numodif, int static[], int numstatic, int i, int j, int numite){
+  if (atoi(matrice[i+1][j]) < atoi(matrice[i][j])){
+    char temp = matrice[i+1][j];
+    matrice[i+1][numc] = matrice[numl][numc];
     matrice[numl][numc] = temp;
     modif[numodif] = {numl+1,numc};
     numodif += 1;
