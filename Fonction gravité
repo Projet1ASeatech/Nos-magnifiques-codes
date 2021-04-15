@@ -27,6 +27,13 @@ void gravity(char matrice, char modif, int numodif, char static, int numstatic, 
     modif[numodif] = [numl][numc+numite];
     numodif += 1;
   }
+  else if (atoi(matrice[numl][numc-numite]) < atoi(matrice[numl][numc])){
+    char temp = matrice[numl][numc-numite];
+    matrice[numl][numc-numite] = matrice[numl][numc];
+    matrice[numl][numc] = temp;
+    modif[numodif] = [numl][numc-numite];
+    numodif += 1;
+  }
   else if{
     static[numstatic] = [numl][numc];
     numstatic += 1;
