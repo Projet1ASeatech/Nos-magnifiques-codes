@@ -8,7 +8,7 @@ void gravity(char matrice, char modif, int numodif, char static, int numstatic, 
   }
   else if (atoi(matrice[numl+1][numc+numite]) < atoi(matrice[numl][numc])){
     char temp = matrice[numl+1][numc+numite];
-    matrice[numl+1][numc+ite] = matrice[numl][numc];
+    matrice[numl+1][numc+numite] = matrice[numl][numc];
     matrice[numl][numc] = temp;
     modif[numodif] = [numl+1][numc+numite];
     numodif += 1;
