@@ -3,3 +3,4 @@ from random import *
 printf("coucou");
 printf('test');
 char pantoufle[2];
+printf('bouh');
