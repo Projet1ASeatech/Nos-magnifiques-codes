@@ -1,2 +1,3 @@
 printf("regardez on peut coder directement c'est magnifique");
 from random import *
+printf("coucou");
