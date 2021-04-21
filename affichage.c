@@ -32,6 +32,8 @@ int WinMain(int argc, char* argv[])
         {10,10,10,10,10,10,10,10,10}
     };
 
+
+
     int hauteur_fenetre = sizeof M / sizeof M[0]-2;
     int largeur_fenetre = sizeof M[0] / sizeof(int)-2;
     int cote = 50;
@@ -43,20 +45,20 @@ int WinMain(int argc, char* argv[])
     rectangle.w = largeur_fenetre*cote+2;
     rectangle.h = hauteur_fenetre*cote+2;
     SDL_RenderDrawRect(rendu, &rectangle);
-
+    SDL_RenderPresent(rendu);
     int numite=1;
     bool* running = true;
     bool* modif;
     int length = sizeof M[0];
-
     while (running)
     {
-        *modif=true;
+        modif=true;
         while (modif)
         {
-            *modif=false;
-            change(M, numite, length, modif);
-            SDL_Delay(1000);
+            modif=false;
+            change(&M, numite, length, modif);
+            printf("test");
+            SDL_Delay(100);
             for(int k=0; k<=hauteur_fenetre; k++)
             {
                 for(int l=0; l<=largeur_fenetre; l++)
@@ -84,6 +86,9 @@ int WinMain(int argc, char* argv[])
                     }
                 }
             }
+            SDL_RenderPresent(rendu);
+            SDL_Delay(1000);
+            printf("coucou");
             numite=-numite;
         }
         SDL_Event event;
@@ -106,7 +111,7 @@ int WinMain(int argc, char* argv[])
                 }
         }
         SDL_RenderPresent(rendu);
-        SDL_Delay(16);
+        SDL_Delay(100);
     }
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(window);
