@@ -1,4 +1,4 @@
-void gravity(int matrice[][], *modif, int numodif, int i, int j, int numite){
+void gravity(int matrice[][], bool *modif, int numodif, int i, int j, int numite){
  if (matrice[i+1][j] < matrice[i][j]){                         //Test puis effectue si possible le déplacement vers le bas
     char temp = matrice[i+1][j];
     matrice[i+1][j] = matrice[i][j];
