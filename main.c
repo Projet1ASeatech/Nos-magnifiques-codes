@@ -1,5 +1,4 @@
-#include "Coordonne.h"
-#include "Function.h"
+#include "function.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -12,13 +11,14 @@ int main(){
                    {10,0,0,0,0,0,0,0,0,10},{10,0,0,0,0,0,0,0,0,10},
                    {10,0,0,0,0,0,0,0,0,10},{10,10,10,10,10,10,10,10,10,10}}
   int numint=1;
-  bool running = True;
+  bool* running = true;
+  bool* modif;
   while running{
-    bool modifie=true;
-    while modifie{
-      modifie=false;
-      change(M);
-      affiche(M);
-      numint=-numnint
+    *modif=true;
+    while modif{
+      *modif=false;
+      change(int M, int numite, int length, bool* modif);
+      affiche(int M);
+      numint=-numnint;
   }
 }
