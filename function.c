@@ -1,4 +1,4 @@
-void gravity(int matrice[][], int modif[], int numodif, int i, int j, int numite){
+void gravity(int matrice[][], int* modif, int i, int j, int numite){
   if (matrice[i][j] == 0 or matrice[i][j] == 10){
   }
   else if (matrice[i+1][j] < matrice[i][j]){                         //Test puis effectue si possible le déplacement vers le bas
