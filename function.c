@@ -1,5 +1,4 @@
-void gravity(int matrice[][], int modif[], int numodif, Coordonnee immobiles[], int numimmo, int i, int j, int numite){
-  Coordonnee NC;
+void gravity(int matrice[][], int modif[], int numodif, int i, int j, int numite){
   if (matrice[i][j] == 0 or matrice[i][j] == 10){
   }
   else if (matrice[i+1][j] < matrice[i][j]){                         //Test puis effectue si possible le déplacement vers le bas
@@ -30,11 +29,5 @@ void gravity(int matrice[][], int modif[], int numodif, Coordonnee immobiles[], 
     matrice[i][j-numite] = matrice[i][j];
     matrice[i][j] = temp;
     modif = true;
-  }
-  else if{                                                                  //Mets à jour la matrice des immobiles
-    NC.x = i;
-    NC.y = j;
-    immobiles[numimmo] = NC;
-    numimmo += 1;
   }
 }
