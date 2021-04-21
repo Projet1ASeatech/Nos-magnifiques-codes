@@ -1,1 +1,1 @@
-gravity(char matrice[][], int modif[], int numodif, Coordonnee immobiles[], int numimmo, int i, int j, int numite)
+void gravity(int matrice[][], *modif, int numodif, int i, int j, int numite)
