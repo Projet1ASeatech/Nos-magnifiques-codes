@@ -5,9 +5,14 @@
 #include <stdbool.h>
 
 int main(){
+  int numint=1;
   bool running = True;
   while running{
-
-    running = False;
+    bool modifie=true;
+    while modifie{
+      modifie=false;
+      change(M);
+      affiche(M);
+      numint=-numnint
   }
 }
