@@ -18,6 +18,7 @@ int main(){
     while modif{
       *modif=false;
       change(int M, int numite, int length, bool* modif);
+      delay(1000);
       affiche(int M);
       numint=-numnint;
   }
