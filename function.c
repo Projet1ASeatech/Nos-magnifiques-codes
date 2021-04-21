@@ -1,4 +1,4 @@
-void gravity(int matrice[][], bool *modif, int numodif, int i, int j, int numite){
+void gravity(int matrice[][], bool* modif, int numodif, int i, int j, int numite){
  if (matrice[i+1][j] < matrice[i][j]){                         //Test puis effectue si possible le déplacement vers le bas
     char temp = matrice[i+1][j];
     matrice[i+1][j] = matrice[i][j];
@@ -31,7 +31,7 @@ void gravity(int matrice[][], bool *modif, int numodif, int i, int j, int numite
 }
 
 
-void change(int matrice[][], int numite, int length){
+void change(int matrice[][], int numite, int length, bool* modif){
   for (int i = length(M[0]); i>0; i--){
     for (int j = length(M[0]); i>0; i--){
       gravity(int matrice[][], bool *modif, int numodif, int i, int j, int numite)
