@@ -29,3 +29,12 @@ void gravity(int matrice[][], bool *modif, int numodif, int i, int j, int numite
     modif = true;
   }
 }
+
+
+void change(int matrice[][], int numite, int length){
+  for (int i = length(M[0]); i>0; i--){
+    for (int j = length(M[0]); i>0; i--){
+      gravity(int matrice[][], bool *modif, int numodif, int i, int j, int numite)
+    }
+  }
+}
