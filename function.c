@@ -53,11 +53,11 @@ void gravity(int matrice[9][9], bool* modif, int i, int j, int numite)
 
 void change(int matrice[9][9], int numite, int length, bool* modif)
 {
-    for (int i = 9; i>0; i--)
+    for (int i = 8; i>=0; i--)
     {
-        for (int j = 9; i>0; i--)
+        for (int j = 8; j>=0; j--)
         {
-            gravity(matrice, &modif, i, j, numite);
+            gravity(matrice, modif, i, j, numite);
         }
     }
     printf("modif=%d\n",*modif);
