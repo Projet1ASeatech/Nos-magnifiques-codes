@@ -39,56 +39,90 @@ int WinMain(int argc, char* argv[])
     int cote = 50;
 
     SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
-    SDL_Rect rectangle;
-    rectangle.x = 0;
-    rectangle.y = 0;
-    rectangle.w = largeur_fenetre*cote+2;
-    rectangle.h = hauteur_fenetre*cote+2;
-    SDL_RenderDrawRect(rendu, &rectangle);
+    SDL_Rect fenetre;
+    fenetre.x = 0;
+    fenetre.y = 0;
+    fenetre.w = largeur_fenetre*cote+2;
+    fenetre.h = hauteur_fenetre*cote+2;
+    SDL_RenderDrawRect(rendu, &fenetre);
+    for(int k=0; k<hauteur_fenetre; k++)
+    {
+        for(int l=0; l<largeur_fenetre; l++)
+        {
+            if (M[k+1][l+1]==1)
+            {
+                SDL_SetRenderDrawColor(rendu, 255, 0, 0, SDL_ALPHA_OPAQUE);
+                SDL_Rect carre;
+                carre.x = 1+(l)*cote;
+                carre.y = 1+(k)*cote;
+                carre.w = cote;
+                carre.h = cote;
+                SDL_RenderDrawRect(rendu, &carre);
+                SDL_RenderFillRect(rendu, &carre);
+            }
+            if (M[k+1][l+1]==0)
+            {
+                SDL_SetRenderDrawColor(rendu, 255, 255, 255, SDL_ALPHA_OPAQUE);
+                SDL_Rect carre;
+                carre.x = 1+(l)*cote;
+                carre.y = 1+(k)*cote;
+                carre.w = cote;
+                carre.h = cote;
+                SDL_RenderDrawRect(rendu, &carre);
+            }
+        }
+    }
     SDL_RenderPresent(rendu);
+    SDL_Delay(1000);
     int numite=1;
-    bool* running = true;
-    bool* modif;
+    bool running = true;
+    bool modif = false;
     int length = sizeof M[0];
     while (running)
     {
         modif=true;
         while (modif)
         {
+            SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
+            SDL_RenderClear(rendu);
+            SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
+            SDL_RenderDrawRect(rendu, &fenetre);
+            SDL_RenderPresent(rendu);
             modif=false;
-            change(&M, numite, length, modif);
-            printf("test");
-            SDL_Delay(100);
-            for(int k=0; k<=hauteur_fenetre; k++)
+            printf("modif=%d\n",modif);
+            change(M, numite, length, &modif);
+            printf("modif=%d\n",modif);
+            printf("test\n");
+            SDL_Delay(1000);
+            for(int k=0; k<hauteur_fenetre; k++)
             {
-                for(int l=0; l<=largeur_fenetre; l++)
+                for(int l=0; l<largeur_fenetre; l++)
                 {
-                    if (M[k][l]==1)
+                    if (M[k+1][l+1]==1)
                     {
                         SDL_SetRenderDrawColor(rendu, 255, 0, 0, SDL_ALPHA_OPAQUE);
                         SDL_Rect carre;
-                        rectangle.x = 1+(l-1)*cote;
-                        rectangle.y = 1+(k-1)*cote;
-                        rectangle.w = cote;
-                        rectangle.h = cote;
-                        SDL_RenderDrawRect(rendu, &rectangle);
-                        SDL_RenderFillRect(rendu, &rectangle);
+                        carre.x = 1+(l)*cote;
+                        carre.y = 1+(k)*cote;
+                        carre.w = cote;
+                        carre.h = cote;
+                        SDL_RenderDrawRect(rendu, &carre);
+                        SDL_RenderFillRect(rendu, &carre);
                     }
-                    if (M[k][l]==0)
+                    if (M[k+1][l+1]==0)
                     {
                         SDL_SetRenderDrawColor(rendu, 255, 255, 255, SDL_ALPHA_OPAQUE);
                         SDL_Rect carre;
-                        rectangle.x = 1+(l-1)*cote;
-                        rectangle.y = 1+(k-1)*cote;
-                        rectangle.w = cote;
-                        rectangle.h = cote;
-                        SDL_RenderDrawRect(rendu, &rectangle);
+                        carre.x = 1+(l)*cote;
+                        carre.y = 1+(k)*cote;
+                        carre.w = cote;
+                        carre.h = cote;
+                        SDL_RenderDrawRect(rendu, &carre);
                     }
                 }
             }
             SDL_RenderPresent(rendu);
             SDL_Delay(1000);
-            printf("coucou");
             numite=-numite;
         }
         SDL_Event event;
@@ -111,8 +145,9 @@ int WinMain(int argc, char* argv[])
                 }
         }
         SDL_RenderPresent(rendu);
-        SDL_Delay(100);
+        SDL_Delay(1000);
     }
+    printf("oups\n");
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(window);
     SDL_Quit();
