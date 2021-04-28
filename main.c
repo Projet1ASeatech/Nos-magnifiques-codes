@@ -1,4 +1,3 @@
-#include "fonction.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -54,16 +53,12 @@ int WinMain(int argc, char* argv[])
         {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10}
     };
 
-
-    int hauteur_fenetre = sizeof M / sizeof M[0]-2;
-    int largeur_fenetre = sizeof M[0] / sizeof(int)-2;
-
     SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
     SDL_Rect fenetre;
     fenetre.x = 0;
     fenetre.y = 0;
-    fenetre.w = largeur_fenetre*cote+2;
-    fenetre.h = hauteur_fenetre*cote+2;
+    fenetre.w = WIDTH*cote+2;
+    fenetre.h = HEIGHT*cote+2;
     SDL_RenderDrawRect(rendu, &fenetre);
 
     SDL_RenderPresent(rendu);
@@ -72,7 +67,6 @@ int WinMain(int argc, char* argv[])
     bool running = true;
     bool modif = true;
     bool* ptr_modif = &modif;
-    int length = sizeof M[0];
     while (running)
     {
         modif=true;
@@ -84,11 +78,11 @@ int WinMain(int argc, char* argv[])
             SDL_RenderDrawRect(rendu, &fenetre);
             SDL_RenderPresent(rendu);
             modif=false;
-            change(M, numite, length, ptr_modif);
+            change(M, numite, ptr_modif);
             SDL_Delay(10);
-            for(int k=0; k<hauteur_fenetre; k++)
+            for(int k=0; k<HEIGHT; k++)
             {
-                for(int l=0; l<largeur_fenetre; l++)
+                for(int l=0; l<WIDTH; l++)
                 {
                     if (M[k+1][l+1]==1)
                     {
