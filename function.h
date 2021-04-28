@@ -1,6 +1,6 @@
-#ifndef FONCTION_H
-#define FONCTION_H
-#define SIZE 9
+#ifndef FUNCTION_H
+#define FUNCTION_H
+#define SIZE 15
 
 #include <stdio.h>
 #include <stdlib.h>
