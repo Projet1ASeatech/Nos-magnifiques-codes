@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
+#define SIZE 9
+
 int WinMain(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
@@ -21,7 +23,7 @@ int WinMain(int argc, char* argv[])
                              -1, // driver
                              SDL_RENDERER_SOFTWARE);
 
-    int M[9][9] = {{10,10,10,10,10,10,10,10,10},
+    int M[SIZE][SIZE] = {{10,10,10,10,10,10,10,10,10},
         {10,0,1,1,0,1,1,0,10},
         {10,1,1,1,1,1,1,1,10},
         {10,1,1,1,1,1,1,1,10},
@@ -76,7 +78,8 @@ int WinMain(int argc, char* argv[])
     SDL_Delay(1000);
     int numite=1;
     bool running = true;
-    bool modif = false;
+    bool modif = true;
+    bool* ptr_modif = &modif;
     int length = sizeof M[0];
     while (running)
     {
@@ -90,7 +93,7 @@ int WinMain(int argc, char* argv[])
             SDL_RenderPresent(rendu);
             modif=false;
             printf("modif=%d\n",modif);
-            change(M, numite, length, &modif);
+            change(M, numite, length, ptr_modif);
             printf("modif=%d\n",modif);
             printf("test\n");
             SDL_Delay(1000);
