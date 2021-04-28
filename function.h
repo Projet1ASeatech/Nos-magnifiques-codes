@@ -1,5 +1,5 @@
-#ifndef FUNCTION_H
-#define FUNCTION_H
+#ifndef FONCTION_H
+#define FONCTION_H
 
 #define HEIGHT 17
 #define WIDTH 15
