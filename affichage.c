@@ -92,11 +92,8 @@ int WinMain(int argc, char* argv[])
             SDL_RenderDrawRect(rendu, &fenetre);
             SDL_RenderPresent(rendu);
             modif=false;
-            printf("modif=%d\n",modif);
             change(M, numite, length, ptr_modif);
-            printf("modif=%d\n",modif);
-            printf("test\n");
-            SDL_Delay(1000);
+            SDL_Delay(10);
             for(int k=0; k<hauteur_fenetre; k++)
             {
                 for(int l=0; l<largeur_fenetre; l++)
@@ -148,9 +145,8 @@ int WinMain(int argc, char* argv[])
                 }
         }
         SDL_RenderPresent(rendu);
-        SDL_Delay(1000);
+        SDL_Delay(10);
     }
-    printf("oups\n");
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(window);
     SDL_Quit();
