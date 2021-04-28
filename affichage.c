@@ -1,17 +1,17 @@
-#include "fonction.h"
+#include "function.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
-#define SIZE 9
+#define SIZE 15
 
 int WinMain(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
 
     SDL_Window* window=NULL;
-    window=SDL_CreateWindow("Hello",
+    window=SDL_CreateWindow("Water falling",
                             SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED,
                             1200,
@@ -23,15 +23,21 @@ int WinMain(int argc, char* argv[])
                              -1, // driver
                              SDL_RENDERER_SOFTWARE);
 
-    int M[SIZE][SIZE] = {{10,10,10,10,10,10,10,10,10},
-        {10,0,1,1,0,1,1,0,10},
-        {10,1,1,1,1,1,1,1,10},
-        {10,1,1,1,1,1,1,1,10},
-        {10,0,1,1,1,1,1,0,10},
-        {10,0,0,1,1,1,0,0,10},
-        {10,0,0,0,1,0,0,0,10},
-        {10,0,0,0,0,0,0,0,10},
-        {10,10,10,10,10,10,10,10,10}
+    int M[SIZE][SIZE] = {{10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,1,1,0,1,1,0,0,0,0,10},
+        {10,0,0,0,1,1,1,1,1,1,1,0,0,0,10},
+        {10,0,0,0,1,1,1,1,1,1,1,0,0,0,10},
+        {10,0,0,0,0,1,1,1,1,1,0,0,0,0,10},
+        {10,0,0,0,0,0,1,1,1,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,1,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10}
     };
 
 
@@ -75,7 +81,7 @@ int WinMain(int argc, char* argv[])
         }
     }
     SDL_RenderPresent(rendu);
-    SDL_Delay(1000);
+    SDL_Delay(10);
     int numite=1;
     bool running = true;
     bool modif = true;
@@ -122,7 +128,7 @@ int WinMain(int argc, char* argv[])
                 }
             }
             SDL_RenderPresent(rendu);
-            SDL_Delay(1000);
+            SDL_Delay(100);
             numite=-numite;
         }
         SDL_Event event;
@@ -131,7 +137,6 @@ int WinMain(int argc, char* argv[])
             if (event.type == SDL_QUIT )
             {
                 running = false;
-                printf("Bye  ");
             }
             if (event.type == SDL_KEYDOWN )
                 switch(event.key.keysym.sym)
@@ -145,9 +150,10 @@ int WinMain(int argc, char* argv[])
                 }
         }
         SDL_RenderPresent(rendu);
-        SDL_Delay(10);
+        SDL_Delay(100);
     }
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
+
