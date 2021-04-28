@@ -7,17 +7,16 @@
 #define HEIGHT 17
 #define WIDTH 15
 
-
 int WinMain(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
-
+    int cote = 25;
     SDL_Window* window=NULL;
     window=SDL_CreateWindow("Water falling",
                             SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED,
-                            1200,
-                            900,
+                            (WIDTH-2)*cote+2,
+                            (HEIGHT-2)*cote+2,
                             SDL_WINDOW_SHOWN);
 
     SDL_Renderer* rendu=NULL;
@@ -45,10 +44,8 @@ int WinMain(int argc, char* argv[])
     };
 
 
-
     int hauteur_fenetre = sizeof M / sizeof M[0]-2;
     int largeur_fenetre = sizeof M[0] / sizeof(int)-2;
-    int cote = 25;
 
     SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
     SDL_Rect fenetre;
@@ -160,4 +157,3 @@ int WinMain(int argc, char* argv[])
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
-
