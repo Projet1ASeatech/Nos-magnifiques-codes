@@ -2,13 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define WIDTH 28
-#define HEIGHT 20
+#define WIDTH 20
+#define HEIGHT 28
 
+/* ##################################### */
+/* ###       Fonction gravity        ### */
+/* ### Gère le déplacement des cases ### */
+/* ##################################### */
 void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
     if (M[i][j]==10 || M[i][j]==0){
-            return 0;
     }
     else if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
     {
@@ -45,11 +48,13 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
         M[i][j] = temp;
         *modif = true;
     }
-    return 0;
 }
 
-
-void change(int M[HEIGHT][WIDTH], int numite, int length, bool* modif)
+/* ################################################ */
+/* ###              Fonction change             ### */
+/* ### Parcours la matrice pour appeler gravity ### */
+/* ################################################ */
+void change(int M[HEIGHT][WIDTH], int numite, bool* modif)
 {
     for (int i = HEIGHT-1; i>=0; i--)
     {
@@ -60,8 +65,11 @@ void change(int M[HEIGHT][WIDTH], int numite, int length, bool* modif)
     }
 }
 
-int matrice(void){
-    int M[HEIGHT][WIDTH];
+/* ################################### */
+/* ###       Fonction matrice      ### */
+/* ###    Génère la matrice vide   ### */
+/* ################################### */
+void matrice(int M[HEIGHT][WIDTH]){
     for (int i=0; i<HEIGHT;i++)
     {
         M[i][0]=10;
@@ -75,7 +83,12 @@ int matrice(void){
     for (int p=1;p<HEIGHT-1;p++)
     {
         for (int q=1;q<WIDTH-1;p++)
-            M[p][q]=0;
+            M[p][q]=1;
     }
-    return M;
+}
+
+void add_water(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
+	int i = (x-x%cote)/cote;
+	int j = (y-y%cote)/cote;
+	M[i][j] = index;
 }
