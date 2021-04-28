@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define WIDTH 15
-#define HEIGHT 17
+#define WIDTH 28
+#define HEIGHT 20
 
 void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
