@@ -39,7 +39,7 @@ int WinMain(int argc, char* argv[])
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
-        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,10,10,10,10,0,0,0,0,0,10},
         {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10}
     };
 
@@ -107,7 +107,7 @@ int WinMain(int argc, char* argv[])
                 {
                     if (M[k+1][l+1]==1)
                     {
-                        SDL_SetRenderDrawColor(rendu, 255, 0, 0, SDL_ALPHA_OPAQUE);
+                        SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
                         SDL_Rect carre;
                         carre.x = 1+(l)*cote;
                         carre.y = 1+(k)*cote;
@@ -118,13 +118,25 @@ int WinMain(int argc, char* argv[])
                     }
                     if (M[k+1][l+1]==0)
                     {
-                        SDL_SetRenderDrawColor(rendu, 255, 255, 255, SDL_ALPHA_OPAQUE);
+                        SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
                         SDL_Rect carre;
                         carre.x = 1+(l)*cote;
                         carre.y = 1+(k)*cote;
                         carre.w = cote;
                         carre.h = cote;
                         SDL_RenderDrawRect(rendu, &carre);
+                        SDL_RenderFillRect(rendu, &carre);
+                    }
+                    if (M[k+1][l+1]==10)
+                    {
+                        SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
+                        SDL_Rect carre;
+                        carre.x = 1+(l)*cote;
+                        carre.y = 1+(k)*cote;
+                        carre.w = cote;
+                        carre.h = cote;
+                        SDL_RenderDrawRect(rendu, &carre);
+                        SDL_RenderFillRect(rendu, &carre);
                     }
                 }
             }
