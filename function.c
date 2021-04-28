@@ -1,12 +1,13 @@
-#include "fonction.h"
+#include "function.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define SIZE 9
+#define SIZE 15
 
 void gravity(int M[SIZE][SIZE], bool* modif, int i, int j, int numite)
 {
     if (M[i][j]==10 || M[i][j]==0){
+            return 0;
     }
     else if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
     {
@@ -43,14 +44,15 @@ void gravity(int M[SIZE][SIZE], bool* modif, int i, int j, int numite)
         M[i][j] = temp;
         *modif = true;
     }
+    return 0;
 }
 
 
 void change(int M[SIZE][SIZE], int numite, int length, bool* modif)
 {
-    for (int i = 8; i>=0; i--)
+    for (int i = SIZE-1; i>=0; i--)
     {
-        for (int j = 8; j>=0; j--)
+        for (int j =  SIZE-1; j>=0; j--)
         {
             gravity(M, modif, i, j, numite);
         }
