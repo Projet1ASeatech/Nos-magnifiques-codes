@@ -4,7 +4,9 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
-#define SIZE 15
+#define HEIGHT 17
+#define WIDTH 15
+
 
 int WinMain(int argc, char* argv[])
 {
@@ -23,9 +25,7 @@ int WinMain(int argc, char* argv[])
                              -1, // driver
                              SDL_RENDERER_SOFTWARE);
 
-    int M[SIZE][SIZE] = {{10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
-        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
-        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+    int M[HEIGHT][WIDTH] = {{10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
         {10,0,0,0,0,1,1,0,1,1,0,0,0,0,10},
         {10,0,0,0,1,1,1,1,1,1,1,0,0,0,10},
@@ -37,6 +37,10 @@ int WinMain(int argc, char* argv[])
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
+        {10,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
         {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10}
     };
 
@@ -44,7 +48,7 @@ int WinMain(int argc, char* argv[])
 
     int hauteur_fenetre = sizeof M / sizeof M[0]-2;
     int largeur_fenetre = sizeof M[0] / sizeof(int)-2;
-    int cote = 50;
+    int cote = 25;
 
     SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
     SDL_Rect fenetre;
