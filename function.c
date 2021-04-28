@@ -58,3 +58,24 @@ void change(int M[SIZE][SIZE], int numite, int length, bool* modif)
         }
     }
 }
+
+int matrice(void){
+    int M[WIDTH][HEIGHT]
+    for (int i=0; i<WIDTH;i++)
+    {
+        M[i][0]=10;
+        M[i][WIDTH-1]=10;
+    }
+    for (int j=0;j<HEIGHT;j++)
+    {
+        M[0][j]=10;
+        M[HEIGHT-1]=10;
+    }
+    for (int p=1;p<WIDTH-1;p++)
+    {
+        for (int q=1;q<HEIGHT-1;p++)
+            M[p][q]=0;
+    }
+    return M;
+}
+
