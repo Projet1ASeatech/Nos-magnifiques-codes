@@ -82,8 +82,8 @@ void matrice(int M[HEIGHT][WIDTH]){
     }
     for (int p=1;p<HEIGHT-1;p++)
     {
-        for (int q=1;q<WIDTH-1;p++)
-            M[p][q]=1;
+        for (int q=1;q<WIDTH-1;q++)
+            M[p][q]=0;
     }
 }
 
