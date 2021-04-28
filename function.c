@@ -7,7 +7,6 @@
 void gravity(int M[SIZE][SIZE], bool* modif, int i, int j, int numite)
 {
     if (M[i][j]==10 || M[i][j]==0){
-            return 0;
     }
     else if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
     {
@@ -49,7 +48,6 @@ void gravity(int M[SIZE][SIZE], bool* modif, int i, int j, int numite)
         printf("i=%d et j=%d\n",i,j);
         *modif = true;
     }
-    return 0;
 }
 
 
