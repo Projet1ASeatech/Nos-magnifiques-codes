@@ -1,9 +1,9 @@
-#include "function.h"
+#include "fonction.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define WIDTH 9
-#define HEIGHT 9
+#define WIDTH 15
+#define HEIGHT 17
 
 void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
@@ -61,7 +61,7 @@ void change(int M[HEIGHT][WIDTH], int numite, int length, bool* modif)
 }
 
 int matrice(void){
-    int M[HEIGHT][WIDTH]
+    int M[HEIGHT][WIDTH];
     for (int i=0; i<HEIGHT;i++)
     {
         M[i][0]=10;
@@ -70,7 +70,7 @@ int matrice(void){
     for (int j=0;j<WIDTH;j++)
     {
         M[0][j]=10;
-        M[WIDTH-1]=10;
+        M[WIDTH-1][j]=10;
     }
     for (int p=1;p<HEIGHT-1;p++)
     {
@@ -79,4 +79,3 @@ int matrice(void){
     }
     return M;
 }
-
