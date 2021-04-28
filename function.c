@@ -5,7 +5,7 @@
 #define WIDTH 9
 #define HEIGHT 9
 
-void gravity(int M[SIZE][SIZE], bool* modif, int i, int j, int numite)
+void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
     if (M[i][j]==10 || M[i][j]==0){
             return 0;
@@ -49,11 +49,11 @@ void gravity(int M[SIZE][SIZE], bool* modif, int i, int j, int numite)
 }
 
 
-void change(int M[SIZE][SIZE], int numite, int length, bool* modif)
+void change(int M[HEIGHT][WIDTH], int numite, int length, bool* modif)
 {
-    for (int i = SIZE-1; i>=0; i--)
+    for (int i = HEIGHT-1; i>=0; i--)
     {
-        for (int j =  SIZE-1; j>=0; j--)
+        for (int j =  WIDTH-1; j>=0; j--)
         {
             gravity(M, modif, i, j, numite);
         }
@@ -61,20 +61,20 @@ void change(int M[SIZE][SIZE], int numite, int length, bool* modif)
 }
 
 int matrice(void){
-    int M[WIDTH][HEIGHT]
-    for (int i=0; i<WIDTH;i++)
+    int M[HEIGHT][WIDTH]
+    for (int i=0; i<HEIGHT;i++)
     {
         M[i][0]=10;
-        M[i][WIDTH-1]=10;
+        M[i][HEIGHT-1]=10;
     }
-    for (int j=0;j<HEIGHT;j++)
+    for (int j=0;j<WIDTH;j++)
     {
         M[0][j]=10;
-        M[HEIGHT-1]=10;
+        M[WIDTH-1]=10;
     }
-    for (int p=1;p<WIDTH-1;p++)
+    for (int p=1;p<HEIGHT-1;p++)
     {
-        for (int q=1;q<HEIGHT-1;p++)
+        for (int q=1;q<WIDTH-1;p++)
             M[p][q]=0;
     }
     return M;
