@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #define WIDTH 20
 #define HEIGHT 28
-// test
+
 /* ##################################### */
 /* ###       Fonction gravity        ### */
 /* ### Gère le déplacement des cases ### */
