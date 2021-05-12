@@ -54,14 +54,6 @@ int WinMain(int argc, char* argv[])
         {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10}
     };
 
-    SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
-    SDL_Rect fenetre;
-    fenetre.x = 0;
-    fenetre.y = 0;
-    fenetre.w = (WIDTH-2)*cote+2;
-    fenetre.h = (HEIGHT-2)*cote+2;
-    SDL_RenderDrawRect(rendu, &fenetre);
-
     SDL_RenderPresent(rendu);
     SDL_Delay(10);
     int numite=1;
