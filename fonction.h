@@ -12,6 +12,7 @@ void gravity(int M[HEIGHT][WIDTH], bool*, int, int, int);
 void change(int M[HEIGHT][WIDTH], int, bool*);
 void matrice(int M[HEIGHT][WIDTH]); // initialise la matrice M
 void add_blocks(int M[HEIGHT][WIDTH], int, int, int, int);
+void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre);
 void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote);
 
 #endif
