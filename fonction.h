@@ -10,6 +10,6 @@
 void gravity(int M[HEIGHT][WIDTH], bool*, int, int, int);
 void change(int M[HEIGHT][WIDTH], int, bool*);
 void matrice(int M[HEIGHT][WIDTH]); // initialise la matrice M
-void add_water(int M[HEIGHT][WIDTH], int, int, int, int);
+void add_blocks(int M[HEIGHT][WIDTH], int, int, int, int);
 
 #endif
