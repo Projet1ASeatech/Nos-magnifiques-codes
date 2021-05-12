@@ -112,12 +112,12 @@ void matrice(int M[HEIGHT][WIDTH]){
     for (int i=0; i<HEIGHT;i++)
     {
         M[i][0]=10;
-        M[i][HEIGHT-1]=10;
+        M[i][WIDTH-1]=10;
     }
     for (int j=0;j<WIDTH;j++)
     {
         M[0][j]=10;
-        M[WIDTH-1][j]=10;
+        M[HEIGHT-1][j]=10;
     }
     for (int p=1;p<HEIGHT-1;p++)
     {
@@ -126,6 +126,10 @@ void matrice(int M[HEIGHT][WIDTH]){
     }
 }
 
+/* ##################################### */
+/* ###      Fonction add_blocks      ### */
+/* ###    Ajoute de nouveaux blocs   ### */
+/* ##################################### */
 void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 	int i = (x-x%cote)/cote;
 	int j = (y-y%cote)/cote;
