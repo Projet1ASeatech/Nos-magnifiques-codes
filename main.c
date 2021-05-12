@@ -9,20 +9,20 @@
 
 int WinMain(int argc, char* argv[])
 {
-    SDL_Init(SDL_INIT_VIDEO);
     int cote = 25;
-    SDL_Window* window=NULL;
-    window=SDL_CreateWindow("Water falling",
-                            SDL_WINDOWPOS_CENTERED,
-                            SDL_WINDOWPOS_CENTERED,
-                            (WIDTH-2)*cote+2,
-                            (HEIGHT-2)*cote+2,
-                            SDL_WINDOW_SHOWN);
-
-    SDL_Renderer* rendu=NULL;
-    rendu=SDL_CreateRenderer(window,
-                             -1, // driver
-                             SDL_RENDERER_SOFTWARE);
+    SDL_Renderer* rendu = NULL;
+    SDL_Window* window = NULL;
+    window = SDL_CreateWindow("Water falling",
+                              SDL_WINDOWPOS_CENTERED,
+                              SDL_WINDOWPOS_CENTERED,
+                              (WIDTH-2)*cote+2,
+                              (HEIGHT-2)*cote+2,
+                              SDL_WINDOW_SHOWN);
+    rendu = SDL_CreateRenderer(window,
+                               -1, // driver
+                               SDL_RENDERER_SOFTWARE);
+    SDL_Rect fenetre;
+    create_window(rendu, cote, fenetre);
 
     int M[HEIGHT][WIDTH] = {{10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10},
         {10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10},
