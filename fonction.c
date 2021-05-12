@@ -210,6 +210,20 @@ void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 	M[i][j] = index;
 }
 
+/* ####################################### */
+/* ###      Fonction create_window     ### */
+/* ###    Crée la fenêtre d'affichage  ### */
+/* ####################################### */
+void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre){
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
+    fenetre.x = 0;
+    fenetre.y = 0;
+    fenetre.w = (WIDTH-2)*cote+2;
+    fenetre.h = (HEIGHT-2)*cote+2;
+    SDL_RenderDrawRect(rendu, &fenetre);
+}
+
 /* ######################################### */
 /* ###      Fonction update_affichage    ### */
 /* ###        Met à jour l'affichage     ### */
