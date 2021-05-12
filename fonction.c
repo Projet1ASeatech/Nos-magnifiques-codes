@@ -210,10 +210,10 @@ void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 	M[i][j] = index;
 }
 
-/* ####################################### */
-/* ###      Fonction update_affichage  ### */
-/* ###    Met à jour l'affichage       ### */
-/* ####################################### */
+/* ######################################### */
+/* ###      Fonction update_affichage    ### */
+/* ###        Met à jour l'affichage     ### */
+/* ######################################### */
 void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
 {
     for(int k=0; k<HEIGHT; k++)
