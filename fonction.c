@@ -13,79 +13,46 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
     if (M[i][j]==10 || M[i][j]==0){
     }
-    else if (M[i][j] == 1){				   	//Déplacement pour l'eau
-    	if (M[i+1][j] < M[i][j])                           	//Test puis effectue si possible le déplacement vers le bas
+    else if (M[i][j] == 1){
+        else if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
         {
             char temp = M[i+1][j];
             M[i+1][j] = M[i][j];
             M[i][j] = temp;
             *modif = true;
-    	}
-    	else if (M[i+1][j+numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale
-    	{
-            char temp = M[i+1][j+numite];
-            M[i+1][j+numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i+1][j-numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
-    	{
-            char temp = M[i+1][j-numite];
-            M[i+1][j-numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i][j+numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté
-    	{
-            char temp = M[i][j+numite];
-            M[i][j+numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i][j-numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
-    	{
-            char temp = M[i][j-numite];
-            M[i][j-numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    }
-    else if (M[i][j] == 2){				   	//Déplacement pour la fumée
-    	if (M[i-1][j] < M[i][j])                           	//Test puis effectue si possible le déplacement vers le bas
-        {
-            char temp = M[i-1][j];
-            M[i-1][j] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i-1][j+numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale
-    	{
-            char temp = M[i-1][j+numite];
-            M[i-1][j+numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i-1][j-numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
-    	{
-            char temp = M[i-1][j-numite];
-            M[i-1][j-numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i][j+numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté
-    	{
-            char temp = M[i][j+numite];
-            M[i][j+numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
-    	else if (M[i][j-numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
-    	{
-            char temp = M[i][j-numite];
-            M[i][j-numite] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-    	}
+        }
+        else if (M[i][j+numite] != 10){
+            if (M[i+1][j+numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale
+            {
+                char temp = M[i+1][j+numite];
+                M[i+1][j+numite] = M[i][j];
+                M[i][j] = temp;
+                *modif = true;
+            }
+            else if (M[i][j+numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté
+            {
+                char temp = M[i][j+numite];
+                M[i][j+numite] = M[i][j];
+                M[i][j] = temp;
+                *modif = true;
+            }
+        }
+        else if (M[i][j-numite] != 10){
+            if (M[i+1][j-numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
+            {
+                char temp = M[i+1][j-numite];
+                M[i+1][j-numite] = M[i][j];
+                M[i][j] = temp;
+                *modif = true;
+            }
+            else if (M[i][j-numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+            {
+                char temp = M[i][j-numite];
+                M[i][j-numite] = M[i][j];
+                M[i][j] = temp;
+                *modif = true;
+            }
+        }
     }
 }
 
