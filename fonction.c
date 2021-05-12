@@ -164,3 +164,31 @@ void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 	int j = (y-y%cote)/cote;
 	M[i][j] = index;
 }
+
+/* ####################################### */
+/* ###      Fonction update_affichage  ### */
+/* ###    Met à jour l'affichage       ### */
+/* ####################################### */
+void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
+{
+    for(int k=0; k<HEIGHT; k++)
+    {
+        for(int l=0; l<WIDTH; l++)
+        {
+            if (M[k+1][l+1]==1)
+                SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==0)
+                SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==10)
+                SDL_SetRenderDrawColor(rendu, 100, 100, 100, SDL_ALPHA_OPAQUE);
+
+            SDL_Rect carre;
+            carre.x = 1+(l)*cote;
+            carre.y = 1+(k)*cote;
+            carre.w = cote;
+            carre.h = cote;
+            SDL_RenderDrawRect(rendu, &carre);
+            SDL_RenderFillRect(rendu, &carre);
+        }
+    }
+}
