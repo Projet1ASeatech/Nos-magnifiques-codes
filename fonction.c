@@ -87,7 +87,7 @@ void matrice(int M[HEIGHT][WIDTH]){
     }
 }
 
-void add_water(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
+void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 	int i = (x-x%cote)/cote;
 	int j = (y-y%cote)/cote;
 	M[i][j] = index;
