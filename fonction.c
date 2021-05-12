@@ -224,6 +224,10 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
                 SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
             else if (M[k+1][l+1]==0)
                 SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	    else if (M[k+1][l+1]==8)
+                SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==9)
+                SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
             else if (M[k+1][l+1]==10)
                 SDL_SetRenderDrawColor(rendu, 100, 100, 100, SDL_ALPHA_OPAQUE);
 
