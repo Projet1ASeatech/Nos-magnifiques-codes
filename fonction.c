@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <SDL2/SDL.h>
 #define WIDTH 20
 #define HEIGHT 28
 
@@ -13,25 +14,23 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
     if (M[i][j]==10 || M[i][j]==0){
     }
-    else if (M[i][j] == 1)
-    {                                                           //Vérifie la nature de la case
-        if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
+    else if (M[i][j] == 1){
+        else if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
         {
             char temp = M[i+1][j];
             M[i+1][j] = M[i][j];
             M[i][j] = temp;
             *modif = true;
         }
-        else if (M[i][j+numite] != 10)
-        {                                                       //Vérifie qu'il n'y ait pas de mur du côté numite
-            if (M[i+1][j+numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale
+        else if (M[i][j+numite] != 10){
+            if (M[i+1][j+numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale
             {
                 char temp = M[i+1][j+numite];
                 M[i+1][j+numite] = M[i][j];
                 M[i][j] = temp;
                 *modif = true;
             }
-            else if (M[i][j+numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté
+            else if (M[i][j+numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté
             {
                 char temp = M[i][j+numite];
                 M[i][j+numite] = M[i][j];
@@ -39,57 +38,15 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
                 *modif = true;
             }
         }
-        else if (M[i][j-numite] != 10)
-        {                                                       //Vérifie qu'il n'y ait pas de mur du côté -numite
-            if (M[i+1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
+        else if (M[i][j-numite] != 10){
+            if (M[i+1][j-numite] < M[i][j])                    //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
             {
                 char temp = M[i+1][j-numite];
                 M[i+1][j-numite] = M[i][j];
                 M[i][j] = temp;
                 *modif = true;
             }
-            else if (M[i][j-numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
-            {
-                char temp = M[i][j-numite];
-                M[i][j-numite] = M[i][j];
-                M[i][j] = temp;
-                *modif = true;
-            }
-        }
-    }
-    else if (M[i][j] == 2){                                     //Vérifie la nature de la case
-        if (M[i-1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le haut
-        {
-            char temp = M[i-1][j];
-            M[i-1][j] = M[i][j];
-            M[i][j] = temp;
-            *modif = true;
-        }
-        else if (M[i][j+numite] != 10){                         //Vérifie qu'il n'y ait pas de mur du côté numite
-            if (M[i-1][j+numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale
-            {
-                char temp = M[i+1][j+numite];
-                M[i-1][j+numite] = M[i][j];
-                M[i][j] = temp;
-                *modif = true;
-            }
-            else if (M[i][j+numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté
-            {
-                char temp = M[i][j+numite];
-                M[i][j+numite] = M[i][j];
-                M[i][j] = temp;
-                *modif = true;
-            }
-        }
-        else if (M[i][j-numite] != 10){                         //Vérifie qu'il n'y ait pas de mur du côté -numite
-            if (M[i-1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
-            {
-                char temp = M[i+1][j-numite];
-                M[i-1][j-numite] = M[i][j];
-                M[i][j] = temp;
-                *modif = true;
-            }
-            else if (M[i][j-numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+            else if (M[i][j-numite] < M[i][j])                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
             {
                 char temp = M[i][j-numite];
                 M[i][j-numite] = M[i][j];
@@ -152,7 +109,7 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
             M[i][j] = temp;
             *modif = true;
     	}
-    	else if (M[i][j-numite] ==9)                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+    	else if (M[i][j-numite] ==9)      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
     	{
             char temp = M[i][j-numite];
             M[i][j-numite] = M[i][j];
