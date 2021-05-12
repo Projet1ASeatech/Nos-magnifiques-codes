@@ -1,5 +1,6 @@
 #ifndef FONCTION_H
 #define FONCTION_H
+#include <SDL2/SDL.h>
 #define WIDTH 20
 #define HEIGHT 28
 
@@ -11,5 +12,6 @@ void gravity(int M[HEIGHT][WIDTH], bool*, int, int, int);
 void change(int M[HEIGHT][WIDTH], int, bool*);
 void matrice(int M[HEIGHT][WIDTH]); // initialise la matrice M
 void add_blocks(int M[HEIGHT][WIDTH], int, int, int, int);
+void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote);
 
 #endif
