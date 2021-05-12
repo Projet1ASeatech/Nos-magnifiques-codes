@@ -55,7 +55,7 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
         }
     }
     else if (M[i][j]==8){
-        if (M[i-1][j] > M[i][j])                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
+        if (M[i-1][j] ==9)                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
         {
             char temp = M[i-1][j];
             M[i-1][j] = M[i][j];
@@ -63,21 +63,21 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
             *modif = true;
     	}
     	
-    	else if (M[i+1][j]>M[i][j])                       // Test puis effectue si possible le déplacement vers le bas
+    	else if (M[i+1][j]==9)                       // Test puis effectue si possible le déplacement vers le bas
         {
             char temp=M[i+1][j];
             M[i+1][j]=M[i][j];
             M[i][j]=temp;
             *modif=true;
         }
-    	else if (M[i-1][j+numite] > M[i][j])                    //Test puis effectue si possible le déplacement en diagonale vers le bas
+    	else if (M[i-1][j+numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale vers le bas
     	{
             char temp = M[i-1][j+numite];
             M[i-1][j+numite] = M[i][j];
             M[i][j] = temp;
             *modif = true;
     	}
-    	else if (M[i-1][j-numite] > M[i][j])                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
+    	else if (M[i-1][j-numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
     	{
             char temp = M[i-1][j-numite];
             M[i-1][j-numite] = M[i][j];
@@ -85,7 +85,7 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
             *modif = true;
     	}
     	
-        else if (M[i+1][j+numite] > M[i][j])                    //Test puis effectue si possible le déplacement en diagonale vers le haut
+        else if (M[i+1][j+numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale vers le haut
     	{
             char temp = M[i+1][j+numite];
             M[i+1][j+numite] = M[i][j];
@@ -93,7 +93,7 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
             *modif = true;
     	}
     	
-    	else if (M[i+1][j-numite] > M[i][j])                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
+    	else if (M[i+1][j-numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
     	{
             char temp = M[i+1][j-numite];
             M[i+1][j-numite] = M[i][j];
@@ -101,14 +101,14 @@ void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
             *modif = true;
     	}
     	
-    	else if (M[i][j+numite] > M[i][j])                      //Test puis effectue si possible le déplacement vers le côté
+    	else if (M[i][j+numite] ==9)                      //Test puis effectue si possible le déplacement vers le côté
     	{
             char temp = M[i][j+numite];
             M[i][j+numite] = M[i][j];
             M[i][j] = temp;
             *modif = true;
     	}
-    	else if (M[i][j-numite] > M[i][j])                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+    	else if (M[i][j-numite] ==9)                      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
     	{
             char temp = M[i][j-numite];
             M[i][j-numite] = M[i][j];
