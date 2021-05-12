@@ -12,7 +12,7 @@
 /* ##################################### */
 void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
-    if (M[i][j]==10 || M[i][j]==0){   				//Sort de la boucle quand ya de l'eau ou de l'air (Phil pas content)
+    if (M[i][j]==10 || M[i][j]==0){   				//permet de sortir de la boucle quand il y a de l'eau ou de l'air
     }
     else if (M[i][j] == 1)
     {                                                           //Vérifie la nature de la case
