@@ -216,9 +216,9 @@ void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 /* ######################################### */
 void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
 {
-    for(int k=0; k<HEIGHT; k++)
+    for(int k=0; k<HEIGHT-2; k++)
     {
-        for(int l=0; l<WIDTH; l++)
+        for(int l=0; l<WIDTH-2; l++)
         {
             if (M[k+1][l+1]==1)
                 SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
