@@ -58,8 +58,8 @@ int WinMain(int argc, char* argv[])
     SDL_Rect fenetre;
     fenetre.x = 0;
     fenetre.y = 0;
-    fenetre.w = WIDTH*cote+2;
-    fenetre.h = HEIGHT*cote+2;
+    fenetre.w = (WIDTH-2)*cote+2;
+    fenetre.h = (HEIGHT-2)*cote+2;
     SDL_RenderDrawRect(rendu, &fenetre);
 
     SDL_RenderPresent(rendu);
