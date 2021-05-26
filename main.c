@@ -107,14 +107,23 @@ int WinMain(int argc, char* argv[])
                     running = false;
                 case SDLK_EXECUTE :
                 //refresh
+                case SDLK_KP_0:
+                    index = 0;
+                    break;
                 case SDLK_KP_1:
                     index = 1;
                     break;
                 case SDLK_KP_2:
-                    index = 10;
+                    index = 20+numite;
                     break;
-                case SDLK_KP_3:
-                    index = 9;
+                case SDLK_KP_7:
+                    index = 70;
+                    break;
+                case SDLK_KP_8:
+                    index = 80+numite;
+                    break;
+                case SDLK_KP_9:
+                    index = 90+numite;
                     break;
                 default :
                     break;
