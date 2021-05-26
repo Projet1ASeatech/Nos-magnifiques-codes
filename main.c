@@ -9,6 +9,7 @@
 
 int WinMain(int argc, char* argv[])
 {
+    SDL_Init(SDL_INIT_VIDEO);
     int cote = 25;
     SDL_Renderer* rendu = NULL;
     SDL_Window* window = NULL;
@@ -60,6 +61,7 @@ int WinMain(int argc, char* argv[])
     bool running = true;
     bool modif = true;
     bool* ptr_modif = &modif;
+    int index = 0;
     while (running)
     {
         modif=true;
@@ -69,12 +71,13 @@ int WinMain(int argc, char* argv[])
             SDL_RenderClear(rendu);
             SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
             SDL_RenderDrawRect(rendu, &fenetre);
+            SDL_RenderPresent(rendu);
             modif=false;
             change(M, numite, ptr_modif);
             SDL_Delay(10);
-             
+
             update_affichage(M, rendu, cote);
-            
+
             SDL_RenderPresent(rendu);
             SDL_Delay(100);
             numite=-numite;
@@ -83,6 +86,16 @@ int WinMain(int argc, char* argv[])
         SDL_Event event;
         while(SDL_PollEvent(&event))
         {
+            int x,y;
+            if (event.type == SDL_MOUSEBUTTONDOWN)
+            {
+                if (event.button.button==SDL_BUTTON_LEFT){
+                    x = event.motion.x/cote;
+                    y = event.motion.y/cote;
+                    M[y+1][x+1] = index;
+
+                }
+            }
             if (event.type == SDL_QUIT )
             {
                 running = false;
@@ -94,6 +107,15 @@ int WinMain(int argc, char* argv[])
                     running = false;
                 case SDLK_EXECUTE :
                 //refresh
+                case SDLK_KP_1:
+                    index = 1;
+                    break;
+                case SDLK_KP_2:
+                    index = 10;
+                    break;
+                case SDLK_KP_3:
+                    index = 9;
+                    break;
                 default :
                     break;
                 }
