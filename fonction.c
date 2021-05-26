@@ -12,136 +12,184 @@
 /* ##################################### */
 void gravity(int M[HEIGHT][WIDTH], bool* modif, int i, int j, int numite)
 {
-    if (M[i][j]==10 || M[i][j]==0){   				//permet de sortir de la boucle quand il y a de l'eau ou de l'air
-    }
-    else if (M[i][j] == 1)
-    {                                                           //Vérifie la nature de la case
-        if (M[i+1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le bas
+    if (M[i][j] == 1)
+    {
+        if (M[i+1][j] == 79 || M[i+1][j] == 81)                                                 //Test si la case en-dessous est du feu et l'éteint si c'est le cas
         {
-            char temp = M[i+1][j];
+            M[i+1][j] = 89;
+            M[i][j] = 20+numite;
+        }                                                                                       //Vérifie la nature de la case
+        else if (M[i+1][j] < M[i][j])                                                           //Test puis effectue si possible le déplacement vers le bas
+        {
+            int temp = M[i+1][j];
             M[i+1][j] = M[i][j];
             M[i][j] = temp;
             *modif = true;
         }
-        else if (M[i][j+numite] != 10)
-        {                                                       //Vérifie qu'il n'y ait pas de mur du côté numite
-            if (M[i+1][j+numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale
+        else if (M[i][j+numite] != 7)
+        {                                                                                       //Vérifie qu'il n'y ait pas de mur du côté numite
+            if (M[i+1][j+numite] < M[i][j])                                                     //Test puis effectue si possible le déplacement en diagonale
             {
-                char temp = M[i+1][j+numite];
+                int temp = M[i+1][j+numite];
                 M[i+1][j+numite] = M[i][j];
                 M[i][j] = temp;
                 *modif = true;
             }
-            else if (M[i][j+numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté
+            else if (M[i][j+numite] < M[i][j])                                                  //Test puis effectue si possible le déplacement vers le côté
             {
-                char temp = M[i][j+numite];
+                int temp = M[i][j+numite];
                 M[i][j+numite] = M[i][j];
                 M[i][j] = temp;
                 *modif = true;
             }
         }
-        else if (M[i][j-numite] != 10)
+        else if (M[i][j-numite] != 7)
         {                                                       //Vérifie qu'il n'y ait pas de mur du côté -numite
             if (M[i+1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
             {
-                char temp = M[i+1][j-numite];
+                int temp = M[i+1][j-numite];
                 M[i+1][j-numite] = M[i][j];
                 M[i][j] = temp;
                 *modif = true;
             }
             else if (M[i][j-numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
             {
-                char temp = M[i][j-numite];
+                int temp = M[i][j-numite];
                 M[i][j-numite] = M[i][j];
                 M[i][j] = temp;
                 *modif = true;
             }
         }
     }
-    else if (M[i][j] == 2){                                     //Vérifie la nature de la case
-        if (M[i-1][j] < M[i][j])                           //Test puis effectue si possible le déplacement vers le haut
+    else if (M[i][j] == 20-numite){                             //Vérifie la nature de la case
+        if (i == 1){
+            M[i][j] = 0;
+        }
+        else if (M[i-1][j] < M[i][j] || M[i-1][j] == 0)                                //Test puis effectue si possible le déplacement vers le haut
         {
-            char temp = M[i-1][j];
-            M[i-1][j] = M[i][j];
+            int temp = M[i-1][j];
+            M[i-1][j] = 20+numite;
             M[i][j] = temp;
             *modif = true;
         }
-        else if (M[i][j+numite] != 10){                         //Vérifie qu'il n'y ait pas de mur du côté numite
+        else if (M[i][j+numite] == 0){                          //Vérifie qu'il n'y ait pas de mur du côté numite
             if (M[i-1][j+numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale
             {
-                char temp = M[i+1][j+numite];
-                M[i-1][j+numite] = M[i][j];
+                int temp = M[i+1][j+numite];
+                M[i-1][j+numite] = 20+numite;
                 M[i][j] = temp;
                 *modif = true;
             }
             else if (M[i][j+numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté
             {
-                char temp = M[i][j+numite];
-                M[i][j+numite] = M[i][j];
+                int temp = M[i][j+numite];
+                M[i][j+numite] = 20+numite;
                 M[i][j] = temp;
                 *modif = true;
             }
         }
-        else if (M[i][j-numite] != 10){                         //Vérifie qu'il n'y ait pas de mur du côté -numite
+        else if (M[i][j-numite] == 0){                         //Vérifie qu'il n'y ait pas de mur du côté -numite
             if (M[i-1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
             {
-                char temp = M[i+1][j-numite];
-                M[i-1][j-numite] = M[i][j];
+                int temp = M[i+1][j-numite];
+                M[i-1][j-numite] = 20+numite;
                 M[i][j] = temp;
                 *modif = true;
             }
             else if (M[i][j-numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
             {
-                char temp = M[i][j-numite];
-                M[i][j-numite] = M[i][j];
+                int temp = M[i][j-numite];
+                M[i][j-numite] = 20+numite;
                 M[i][j] = temp;
                 *modif = true;
             }
         }
     }
-    else if (M[i][j]==8){
-        if (M[i-1][j] ==9)                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
+    else if (M[i][j]==80-numite){
+        if (M[i-1][j] == 90)                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
         {
-            M[i-1][j] = M[i][j];
+            M[i-1][j] = 80+numite;
             *modif = true;
     	}
-
-    	else if (M[i+1][j]==9)                       // Test puis effectue si possible le déplacement vers le haut
+    	else if (M[i+1][j]==90)                       // Test puis effectue si possible le déplacement vers le haut
         {
-            M[i+1][j]=M[i][j];
+            M[i+1][j]=80+numite;
             *modif=true;
         }
-    	else if (M[i-1][j+numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale vers le bas
+    	else if (M[i-1][j+numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale vers le bas
     	{
-            M[i-1][j+numite] = M[i][j];
+            M[i-1][j+numite] = 80+numite;
             *modif = true;
     	}
-    	else if (M[i-1][j-numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
+    	else if (M[i-1][j-numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
     	{
-            M[i-1][j-numite] = M[i][j];
-            *modif = true;
-    	}
-
-        else if (M[i+1][j+numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale vers le haut
-    	{
-            M[i+1][j+numite] = M[i][j];
+            M[i-1][j-numite] = 80+numite;
             *modif = true;
     	}
 
-    	else if (M[i+1][j-numite] ==9)                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
+        else if (M[i+1][j+numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale vers le haut
     	{
-            M[i+1][j-numite] = M[i][j];
+            M[i+1][j+numite] = 80+numite;
             *modif = true;
     	}
 
-    	else if (M[i][j+numite] ==9)                      //Test puis effectue si possible le déplacement vers le côté
+    	else if (M[i+1][j-numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
     	{
-            M[i][j+numite] = M[i][j];
+            M[i+1][j-numite] = 80+numite;
             *modif = true;
     	}
-    	else if (M[i][j-numite] ==9)      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+
+    	else if (M[i][j+numite] ==90)                      //Test puis effectue si possible le déplacement vers le côté
     	{
-            M[i][j-numite] = M[i][j];
+            M[i][j+numite] = 80+numite;
+            *modif = true;
+    	}
+    	else if (M[i][j-numite] ==90)      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+    	{
+            M[i][j-numite] = 80+numite;
+            *modif = true;
+    	}
+    	else if (M[i-1][j] ==89)                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
+        {
+            M[i-1][j] = 90;
+            *modif = true;
+    	}
+    	else if (M[i+1][j]==89)                       // Test puis effectue si possible le déplacement vers le haut
+        {
+            M[i+1][j]=90;
+            *modif=true;
+        }
+    	else if (M[i-1][j+numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale vers le bas
+    	{
+            M[i-1][j+numite] = 90;
+            *modif = true;
+    	}
+    	else if (M[i-1][j-numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
+    	{
+            M[i-1][j-numite] = 90;
+            *modif = true;
+    	}
+
+        else if (M[i+1][j+numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale vers le haut
+    	{
+            M[i+1][j+numite] = 90;
+            *modif = true;
+    	}
+
+    	else if (M[i+1][j-numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
+    	{
+            M[i+1][j-numite] = 90;
+            *modif = true;
+    	}
+
+    	else if (M[i][j+numite] == 89)                      //Test puis effectue si possible le déplacement vers le côté
+    	{
+            M[i][j+numite] = 90;
+            *modif = true;
+    	}
+    	else if (M[i][j-numite] == 89)      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+    	{
+            M[i][j-numite] = 90;
             *modif = true;
     	}
     }
@@ -169,13 +217,13 @@ void change(int M[HEIGHT][WIDTH], int numite, bool* modif)
 void matrice(int M[HEIGHT][WIDTH]){
     for (int i=0; i<HEIGHT;i++)
     {
-        M[i][0]=10;
-        M[i][WIDTH-1]=10;
+        M[i][0]=7;
+        M[i][WIDTH-1]=7;
     }
     for (int j=0;j<WIDTH;j++)
     {
-        M[0][j]=10;
-        M[HEIGHT-1][j]=10;
+        M[0][j]=7;
+        M[HEIGHT-1][j]=7;
     }
     for (int p=1;p<HEIGHT-1;p++)
     {
@@ -198,8 +246,8 @@ void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
 /* ###      Fonction create_window     ### */
 /* ###    Crée la fenêtre d'affichage  ### */
 /* ####################################### */
-void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre)
-{
+void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre){
+    SDL_Init(SDL_INIT_VIDEO);
     SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
     fenetre.x = 0;
     fenetre.y = 0;
@@ -218,16 +266,24 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
     {
         for(int l=0; l<WIDTH-2; l++)
         {
-            if (M[k+1][l+1]==1)
+            if (M[k+1][l+1]==1)                                                 //Pour l'eau
                 SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==0)
+            else if (M[k+1][l+1]==0)                                            //Pour l'air
                 SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
-	    else if (M[k+1][l+1]==8)
+            else if (M[k+1][l+1]==79)                                           //Pour le feu
                 SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==9)
+            else if (M[k+1][l+1]==81)                                           //Pour le feu
+                SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==89)                                            //Pour le bois
                 SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==10)
+            else if (M[k+1][l+1]==90)                                            //Pour le bois
+                SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==70)                                            //Pour le mur
                 SDL_SetRenderDrawColor(rendu, 100, 100, 100, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==19)                                            //Pour la fumée
+                SDL_SetRenderDrawColor(rendu, 192, 192, 192, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==21)                                            //Pour la fumée
+                SDL_SetRenderDrawColor(rendu, 192, 192, 192, SDL_ALPHA_OPAQUE);
 
             SDL_Rect carre;
             carre.x = 1+(l)*cote;
