@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void gravity(int M[HEIGHT][WIDTH], bool*, int, int, int);
-void change(int M[HEIGHT][WIDTH], int, bool*);
+void gravity(int M[HEIGHT][WIDTH], int, int, int);
+void change(int M[HEIGHT][WIDTH], int);
 void matrice(int M[HEIGHT][WIDTH]); // initialise la matrice M
 void add_blocks(int M[HEIGHT][WIDTH], int, int, int, int);
 void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre);
