@@ -4,27 +4,30 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
+// Définition de la taille de la fenêtre en blocs (Hauteur et Largeur)
 #define HEIGHT 28
 #define WIDTH 20
 
 int WinMain(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
+    // Renseigner la taille d'un bloc
     int cote = 25;
+    // Renseigner le temps voulu entre 2 affichages (en ms)
+    int time_update = 100;
     SDL_Renderer* rendu = NULL;
     SDL_Window* window = NULL;
+    // Renseigner le nom de la fenêtre
+    // Les dimensions de la fenêtre sont prédéfinies en fonction de cote, HEIGHT, WIDTH
     window = SDL_CreateWindow("Water falling",
                               SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED,
                               (WIDTH-2)*cote+2,
                               (HEIGHT-2)*cote+2,
                               SDL_WINDOW_SHOWN);
-    rendu = SDL_CreateRenderer(window,
-                               -1, // driver
-                               SDL_RENDERER_SOFTWARE);
-    SDL_Rect fenetre;
-    create_window(rendu, cote, fenetre);
+    rendu = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 
+    // Définition de la matrice M initiale
     int M[HEIGHT][WIDTH] = {{70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70},
         {70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70},
         {70,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,70},
@@ -55,16 +58,18 @@ int WinMain(int argc, char* argv[])
         {70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70}
     };
 
-    SDL_RenderPresent(rendu);
-    SDL_Delay(10);
+    // Paramètre de parité d'itération
     int numite=1;
+    // Boucles
     bool running = true;
+    // Type de bloc sélectionné
     int index = 0;
     while (running)
     {
         SDL_Event event;
         while(SDL_PollEvent(&event))
         {
+            // Placement d'un nouveau pixel de type index
             int x,y;
             if (event.type == SDL_MOUSEBUTTONDOWN)
             {
@@ -72,22 +77,23 @@ int WinMain(int argc, char* argv[])
                     x = event.motion.x/cote;
                     y = event.motion.y/cote;
                     M[y+1][x+1] = index;
-
                 }
             }
+            // Fermeture de la fenêtre si on appuie sur la croix
             if (event.type == SDL_QUIT )
             {
                 running = false;
                 break;
             }
+
             if (event.type == SDL_KEYDOWN )
                 switch(event.key.keysym.sym)
                 {
+                // Fermeture de la fenêtre si on appuie sur échap
                 case SDLK_ESCAPE :
                     running = false;
                     break;
-                case SDLK_EXECUTE :
-                //refresh
+                // Changement de la valeur de index selon la touche choisie
                 case SDLK_KP_0:
                     index = 0;
                     break;
@@ -109,21 +115,17 @@ int WinMain(int argc, char* argv[])
                 default :
                     break;
                 }
-            SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
-            SDL_RenderClear(rendu);
-            SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
-            SDL_RenderDrawRect(rendu, &fenetre);
-            SDL_RenderPresent(rendu);
+            // Appel de la fonction permettant de mettre à jour M
             change(M, numite);
-            SDL_Delay(10);
-
+            // Affichage de la nouvelle matrice M
             update_affichage(M, rendu, cote);
-
             SDL_RenderPresent(rendu);
-            SDL_Delay(100);
+            SDL_Delay(time_update);
+            // Changement de parité pour la prochaine itération
             numite=-numite;
         }
         SDL_RenderPresent(rendu);
+        printf("hey");
         SDL_Delay(100);
     }
 
