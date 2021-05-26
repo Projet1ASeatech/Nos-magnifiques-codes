@@ -25,7 +25,7 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
             M[i+1][j] = M[i][j];
             M[i][j] = temp;
         }
-        else if (M[i][j+numite] != 7)
+        else if (M[i][j+numite] != 70)
         {                                                                                       //Vérifie qu'il n'y ait pas de mur du côté numite
             if (M[i+1][j+numite] < M[i][j])                                                     //Test puis effectue si possible le déplacement en diagonale
             {
@@ -40,7 +40,7 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
                 M[i][j] = temp;
             }
         }
-        else if (M[i][j-numite] != 7)
+        else if (M[i][j-numite] != 70)
         {                                                       //Vérifie qu'il n'y ait pas de mur du côté -numite
             if (M[i+1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
             {
