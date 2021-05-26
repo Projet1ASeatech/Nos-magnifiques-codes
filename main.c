@@ -59,30 +59,9 @@ int WinMain(int argc, char* argv[])
     SDL_Delay(10);
     int numite=1;
     bool running = true;
-    bool modif = true;
-    bool* ptr_modif = &modif;
     int index = 0;
     while (running)
     {
-        modif=true;
-        while (modif)
-        {
-            SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
-            SDL_RenderClear(rendu);
-            SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
-            SDL_RenderDrawRect(rendu, &fenetre);
-            SDL_RenderPresent(rendu);
-            modif=false;
-            change(M, numite, ptr_modif);
-            SDL_Delay(10);
-
-            update_affichage(M, rendu, cote);
-
-            SDL_RenderPresent(rendu);
-            SDL_Delay(100);
-            numite=-numite;
-        }
-
         SDL_Event event;
         while(SDL_PollEvent(&event))
         {
@@ -99,12 +78,14 @@ int WinMain(int argc, char* argv[])
             if (event.type == SDL_QUIT )
             {
                 running = false;
+                break;
             }
             if (event.type == SDL_KEYDOWN )
                 switch(event.key.keysym.sym)
                 {
                 case SDLK_ESCAPE :
                     running = false;
+                    break;
                 case SDLK_EXECUTE :
                 //refresh
                 case SDLK_KP_0:
@@ -128,10 +109,24 @@ int WinMain(int argc, char* argv[])
                 default :
                     break;
                 }
+            SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
+            SDL_RenderClear(rendu);
+            SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
+            SDL_RenderDrawRect(rendu, &fenetre);
+            SDL_RenderPresent(rendu);
+            change(M, numite);
+            SDL_Delay(10);
+
+            update_affichage(M, rendu, cote);
+
+            SDL_RenderPresent(rendu);
+            SDL_Delay(100);
+            numite=-numite;
         }
         SDL_RenderPresent(rendu);
         SDL_Delay(100);
     }
+
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(window);
     SDL_Quit();
