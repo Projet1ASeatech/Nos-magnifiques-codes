@@ -119,6 +119,12 @@ int WinMain(int argc, char* argv[])
                 case SDLK_KP_9:
                     index = 90+numite;
                     break;
+                case SDLK_KP_5:
+                    index = 50;
+                    break;
+                case SDLK_KP_3:
+                    index = 10;
+                    break;
                 default :
                     break;
                 }
