@@ -14,8 +14,8 @@ int WinMain(int argc, char* argv[])
     SDL_Init(SDL_INIT_VIDEO);
     int cote = 25;                                                                                  // Renseigner la taille d'un bloc
     int time_update = 100;                                                                          // Renseigner le temps voulu entre 2 affichages (en ms)
-    SDL_Renderer* rendu = NULL;
-    SDL_Window* window = NULL;
+    SDL_Renderer* rendu;
+    SDL_Window* window;
     window = SDL_CreateWindow("Water falling",                                                      // Renseigner le nom de la fenêtre
                               SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED,
@@ -23,6 +23,12 @@ int WinMain(int argc, char* argv[])
                               (HEIGHT-2)*cote+2,
                               SDL_WINDOW_SHOWN);
     rendu = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+    
+    SDL_Surface *surface;
+    surface = SDL_LoadBMP("./img/logo.bmp");
+    SDL_SetWindowIcon(window, surface);
+    SDL_FreeSurface(surface);
+    
     // Définition de la matrice M initiale
     /*
         int M[HEIGHT][WIDTH] = {{70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70},
