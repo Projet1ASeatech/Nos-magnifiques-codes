@@ -8,47 +8,53 @@
 
 /* ##################################### */
 /* ###       Fonction gravity        ### */
-/* ### Gère le déplacement des cases ### */
+/* ### Gère le déplacement des blocs ### */
 /* ##################################### */
 void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
 {
-    if (M[i][j] == 1)
+/* ============================ */
+/* === Déplacement de l'eau === */
+/* ============================ */
+
+    if (M[i][j] == 1)                                                                           // Si la case est de l'eau
     {
-        if (M[i+1][j] == 79 || M[i+1][j] == 81)                                                 //Test si la case en-dessous est du feu et l'éteint si c'est le cas
+        /* -------------------------- */
+        /* --- Extinction du feu --- */
+        /* -------------------------- */
+        if (M[i+1][j] == 79 || M[i+1][j] == 81)                                                 // Si la case en-dessous est du feu
         {
-            M[i+1][j] = 89;
-            M[i][j] = 20+numite;
-        }                                                                                       //Vérifie la nature de la case
-        else if (M[i+1][j] < M[i][j])                                                           //Test puis effectue si possible le déplacement vers le bas
+            M[i+1][j] = 89;                                                                     // On éteint le feu qui redevient du bois
+            M[i][j] = 20+numite;                                                                // L'eau devient de la vapeur
+        }
+        else if (M[i+1][j] < M[i][j])                                                           // Test possibilité de déplacement vers le bas
         {
             int temp = M[i+1][j];
             M[i+1][j] = M[i][j];
             M[i][j] = temp;
         }
-        else if (M[i][j+numite] != 70)
-        {                                                                                       //Vérifie qu'il n'y ait pas de mur du côté numite
-            if (M[i+1][j+numite] < M[i][j])                                                     //Test puis effectue si possible le déplacement en diagonale
+        else if (M[i][j+numite] != 70)                                                          // Si la case côté parité n'est pas du mur
+        {
+            if (M[i+1][j+numite] < M[i][j])                                                     // Test possibilité de déplacement en diagonale
             {
                 int temp = M[i+1][j+numite];
                 M[i+1][j+numite] = M[i][j];
                 M[i][j] = temp;
             }
-            else if (M[i][j+numite] < M[i][j])                                                  //Test puis effectue si possible le déplacement vers le côté
+            else if (M[i][j+numite] < M[i][j])                                                  // Test possibilité de déplacement de côté
             {
                 int temp = M[i][j+numite];
                 M[i][j+numite] = M[i][j];
                 M[i][j] = temp;
             }
         }
-        else if (M[i][j-numite] != 70)
-        {                                                       //Vérifie qu'il n'y ait pas de mur du côté -numite
-            if (M[i+1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
-            {
+        else if (M[i][j-numite] != 70)                                                          // Si la case côté opposé à parité n'est pas du mur
+        {
+            if (M[i+1][j-numite] < M[i][j]){                                                    // Test possibilité de déplacement en diagonale
                 int temp = M[i+1][j-numite];
                 M[i+1][j-numite] = M[i][j];
                 M[i][j] = temp;
             }
-            else if (M[i][j-numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+            else if (M[i][j-numite] < M[i][j])                                                  // Test possibilité de déplacement de côté
             {
                 int temp = M[i][j-numite];
                 M[i][j-numite] = M[i][j];
@@ -56,38 +62,46 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
             }
         }
     }
-    else if (M[i][j] == 20-numite){                             //Vérifie la nature de la case
-        if (i == 1){
-            M[i][j] = 0;
+
+/* ================================ */
+/* === Déplacement de la vapeur === */
+/* ================================ */
+    else if (M[i][j] == 20-numite)                                                              // Si la case est de la vapeur
+    {
+        if (i == 1)                                                                             // Si on est en haut de l'écran
+        {
+            M[i][j] = 0;                                                                        // Fait disparaitre la case de vapeur
         }
-        else if (M[i-1][j] < M[i][j] || M[i-1][j] == 0)                                //Test puis effectue si possible le déplacement vers le haut
+        else if (M[i-1][j] < M[i][j] || M[i-1][j] == 0)                                         // Test possibilité de déplacement vers le haut
         {
             int temp = M[i-1][j];
             M[i-1][j] = 20+numite;
             M[i][j] = temp;
         }
-        else if (M[i][j+numite] == 0){                          //Vérifie qu'il n'y ait pas de mur du côté numite
-            if (M[i-1][j+numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale
+        else if (M[i][j+numite] == 0)                                                           // Si la case côté parité n'est pas du mur
+        {
+            if (M[i-1][j+numite] < M[i][j])                                                     // Test possibilité de déplacement en diagonale
             {
                 int temp = M[i+1][j+numite];
                 M[i-1][j+numite] = 20+numite;
                 M[i][j] = temp;
             }
-            else if (M[i][j+numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté
+            else if (M[i][j+numite] < M[i][j])                                                  // Test possibilité de déplacement de côté
             {
                 int temp = M[i][j+numite];
                 M[i][j+numite] = 20+numite;
                 M[i][j] = temp;
             }
         }
-        else if (M[i][j-numite] == 0){                         //Vérifie qu'il n'y ait pas de mur du côté -numite
-            if (M[i-1][j-numite] < M[i][j])                     //Test puis effectue si possible le déplacement en diagonale dans l'autre direction
+        else if (M[i][j-numite] == 0)                                                           // Si la case côté opposé à parité n'est pas du mur
+        {
+            if (M[i-1][j-numite] < M[i][j])                                                     // Test possibilité de déplacement en diagonale
             {
                 int temp = M[i+1][j-numite];
                 M[i-1][j-numite] = 20+numite;
                 M[i][j] = temp;
             }
-            else if (M[i][j-numite] < M[i][j])                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
+            else if (M[i][j-numite] < M[i][j])                                                  // Test possibilité de déplacement de côté
             {
                 int temp = M[i][j-numite];
                 M[i][j-numite] = 20+numite;
@@ -95,77 +109,149 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
             }
         }
     }
-    else if (M[i][j]==80-numite){
-        if (M[i-1][j] == 90)                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
+
+/* ========================== */
+/* === Déplacement du feu === */
+/* ========================== */
+    else if (M[i][j]==80-numite)                                                                // Si la case est du feu
+    {
+        /* ------------------------------------------- */
+        /* --- Propagation du feu dans du bois sec --- */
+        /* ------------------------------------------- */
+        if (M[i-1][j] == 90)                                                                 	// Test possibilité de déplacement vers le haut
         {
             M[i-1][j] = 80+numite;
-    	}
-    	else if (M[i+1][j]==90)                       // Test puis effectue si possible le déplacement vers le haut
+        }
+        else if (M[i+1][j]==90)                                                                 // Test possibilité de déplacement vers le bas
         {
             M[i+1][j]=80+numite;
         }
-    	else if (M[i-1][j+numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale vers le bas
-    	{
+        else if (M[i-1][j+numite] ==90)                                                         // Test possibilité de déplacement en diagonale haute côté parité
+        {
             M[i-1][j+numite] = 80+numite;
-    	}
-    	else if (M[i-1][j-numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
-    	{
+        }
+        else if (M[i-1][j-numite] ==90)                                                         // Test possibilité de déplacement en diagonale haute côté opposé parité
+        {
             M[i-1][j-numite] = 80+numite;
-    	}
-
-        else if (M[i+1][j+numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale vers le haut
-    	{
+        }
+        else if (M[i+1][j+numite] ==90)                                                         // Test possibilité de déplacement en diagonale basse côté parité
+        {
             M[i+1][j+numite] = 80+numite;
-    	}
-
-    	else if (M[i+1][j-numite] ==90)                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
-    	{
+        }
+        else if (M[i+1][j-numite] ==90)                                                         // Test possibilité de déplacement en diagonale basse côté opposé parité
+        {
             M[i+1][j-numite] = 80+numite;
-    	}
-
-    	else if (M[i][j+numite] ==90)                      //Test puis effectue si possible le déplacement vers le côté
-    	{
+        }
+        else if (M[i][j+numite] ==90)                                                           // Test possibilité de déplacement de côté parité
+        {
             M[i][j+numite] = 80+numite;
-    	}
-    	else if (M[i][j-numite] ==90)      //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
-    	{
+        }
+        else if (M[i][j-numite] ==90)                                                           // Test possibilité de déplacement de côté opposé parité
+        {
             M[i][j-numite] = 80+numite;
-    	}
-    	else if (M[i-1][j] ==89)                           	//Test puis effectue si possible le déplacement vers le bas (> car indice bois=9>8)
+        }
+        /* ----------------------- */
+        /* --- Séchage du bois --- */
+        /* ----------------------- */
+        else if (M[i-1][j] ==89)
         {
             M[i-1][j] = 90;
-    	}
-    	else if (M[i+1][j]==89)                       // Test puis effectue si possible le déplacement vers le haut
+        }
+        else if (M[i+1][j]==89)
         {
             M[i+1][j]=90;
         }
-    	else if (M[i-1][j+numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale vers le bas
-    	{
+        else if (M[i-1][j+numite] == 89)
+        {
             M[i-1][j+numite] = 90;
-    	}
-    	else if (M[i-1][j-numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale  vers le bas dans l'autre direction
-    	{
+        }
+        else if (M[i-1][j-numite] == 89)
+        {
             M[i-1][j-numite] = 90;
-    	}
-
-        else if (M[i+1][j+numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale vers le haut
-    	{
+        }
+        else if (M[i+1][j+numite] == 89)
+        {
             M[i+1][j+numite] = 90;
-    	}
-
-    	else if (M[i+1][j-numite] == 89)                    //Test puis effectue si possible le déplacement en diagonale  vers le haut dans l'autre direction
-    	{
+        }
+        else if (M[i+1][j-numite] == 89)
+        {
             M[i+1][j-numite] = 90;
-    	}
-
-    	else if (M[i][j+numite] == 89)                      //Test puis effectue si possible le déplacement vers le côté
-    	{
+        }
+        else if (M[i][j+numite] == 89)
+        {
             M[i][j+numite] = 90;
-    	}
-    	else if (M[i][j-numite] == 89)                  //Test puis effectue si possible le déplacement vers le côté dans l'autre direction
-    	{
+        }
+        else if (M[i][j-numite] == 89)
+        {
             M[i][j-numite] = 90;
-    	}
+        }
+    }
+/* ============================ */
+/* === Déplacement du sable === */
+/* ============================ */
+    else if (M[i][j] == 50)                                                                     // Si la case est du feu
+    {
+        if (M[i+1][j] == 79 || M[i+1][j] == 81)
+        {
+            M[i+1][j] = 89;                                                                     // On éteint le feu qui redevient du bois
+        }
+        else if (M[i+1][j] < M[i][j])                                                           // Test possibilité de déplacement vers le bas
+        {
+            int temp = M[i+1][j];
+            M[i+1][j] = M[i][j];
+            M[i][j] = temp;
+        }
+        else if (M[i][j+numite] < 70 )                                                          // Si la case côté parité n'est pas du mur, du bois ou du bois brulant
+        {
+            if (M[i+1][j+numite] < M[i][j])                                                     // Test possibilité de déplacement en diagonale côté parité
+            {
+                int temp = M[i+1][j+numite];
+                M[i+1][j+numite] = M[i][j];
+                M[i][j] = temp;
+            }
+        }
+    }
+/* ============================== */
+/* === Déplacement de l'huile === */
+/* ============================== */
+    else if (M[i][j] == 10)                                                                      // Si la case est de l'huile
+    {
+        if (M[i+1][j] < M[i][j])                                                                 // Test possibilité de déplacement vers le bas
+        {
+            int temp = M[i+1][j];
+            M[i+1][j] = 10;
+            M[i][j] = temp;
+        }
+        else if (M[i][j+numite] != 70)                                                           // Si la case côté parité n'est pas du mur
+        {
+            if (M[i+1][j+numite] < M[i][j])                                                      // Test possibilité de déplacement en diagonale
+            {
+                int temp = M[i+1][j+numite];
+                M[i+1][j+numite] = M[i][j];
+                M[i][j] = temp;
+            }
+            else if (M[i][j+numite] < M[i][j])                                                   // Test possibilité de déplacement de côté
+            {
+                int temp = M[i][j+numite];
+                M[i][j+numite] = M[i][j];
+                M[i][j] = temp;
+            }
+        }
+        else if (M[i][j-numite] != 70)                                                           // Si la case côté opposé à parité n'est pas du mur
+        {
+            if (M[i+1][j-numite] < M[i][j])                                                      // Test possibilité de déplacement en diagonale
+            {
+                int temp = M[i+1][j-numite];
+                M[i+1][j-numite] = M[i][j];
+                M[i][j] = temp;
+            }
+            else if (M[i][j-numite] < M[i][j])                                                   // Test possibilité de déplacement de côté
+            {
+                int temp = M[i][j-numite];
+                M[i][j-numite] = M[i][j];
+                M[i][j] = temp;
+            }
+        }
     }
 }
 
@@ -188,20 +274,21 @@ void change(int M[HEIGHT][WIDTH], int numite)
 /* ###       Fonction matrice      ### */
 /* ###    Génère la matrice vide   ### */
 /* ################################### */
-void matrice(int M[HEIGHT][WIDTH]){
-    for (int i=0; i<HEIGHT;i++)
+void matrice(int M[HEIGHT][WIDTH])
+{
+    for (int i=0; i<HEIGHT; i++)
     {
         M[i][0]=7;
         M[i][WIDTH-1]=7;
     }
-    for (int j=0;j<WIDTH;j++)
+    for (int j=0; j<WIDTH; j++)
     {
         M[0][j]=7;
         M[HEIGHT-1][j]=7;
     }
-    for (int p=1;p<HEIGHT-1;p++)
+    for (int p=1; p<HEIGHT-1; p++)
     {
-        for (int q=1;q<WIDTH-1;q++)
+        for (int q=1; q<WIDTH-1; q++)
             M[p][q]=0;
     }
 }
@@ -210,17 +297,19 @@ void matrice(int M[HEIGHT][WIDTH]){
 /* ###      Fonction add_blocks      ### */
 /* ###    Ajoute de nouveaux blocs   ### */
 /* ##################################### */
-void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index){
-	int i = (x-x%cote)/cote;
-	int j = (y-y%cote)/cote;
-	M[i][j] = index;
+void add_blocks(int M[HEIGHT][WIDTH], int x, int y, int cote, int index)
+{
+    int i = (x-x%cote)/cote;
+    int j = (y-y%cote)/cote;
+    M[i][j] = index;
 }
 
 /* ####################################### */
 /* ###      Fonction create_window     ### */
 /* ###    Crée la fenêtre d'affichage  ### */
 /* ####################################### */
-void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre){
+void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre)
+{
     SDL_Init(SDL_INIT_VIDEO);
     SDL_SetRenderDrawColor(rendu, 0, 255, 0, SDL_ALPHA_OPAQUE);
     fenetre.x = 0;
@@ -240,24 +329,28 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
     {
         for(int l=0; l<WIDTH-2; l++)
         {
-            if (M[k+1][l+1]==1)                                                 //Pour l'eau
+            if (M[k+1][l+1]==1)                                                                  // Pour l'eau
                 SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==0)                                            //Pour l'air
+            else if (M[k+1][l+1]==0)                                                             // Pour l'air
                 SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==79)                                           //Pour le feu
+            else if (M[k+1][l+1]==79)                                                            // Pour le feu
                 SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==81)                                           //Pour le feu
+            else if (M[k+1][l+1]==81)                                                            // Pour le feu
                 SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==89)                                            //Pour le bois
+            else if (M[k+1][l+1]==89)                                                            // Pour le bois
                 SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==90)                                            //Pour le bois
+            else if (M[k+1][l+1]==90)                                                            // Pour le bois
                 SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==70)                                            //Pour le mur
+            else if (M[k+1][l+1]==70)                                                            // Pour le mur
                 SDL_SetRenderDrawColor(rendu, 100, 100, 100, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==19)                                            //Pour la fumée
+            else if (M[k+1][l+1]==19)                                                            // Pour la fumée
                 SDL_SetRenderDrawColor(rendu, 192, 192, 192, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==21)                                            //Pour la fumée
+            else if (M[k+1][l+1]==21)                                                            // Pour la fumée
                 SDL_SetRenderDrawColor(rendu, 192, 192, 192, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==50)                                                            // Pour le sable
+                SDL_SetRenderDrawColor(rendu, 255, 255, 102, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==10)                                                            // Pour l'huile
+                SDL_SetRenderDrawColor(rendu, 128, 128, 0, SDL_ALPHA_OPAQUE);
 
             SDL_Rect carre;
             carre.x = 1+(l)*cote;
