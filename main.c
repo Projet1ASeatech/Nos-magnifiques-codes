@@ -12,22 +12,17 @@
 int WinMain(int argc, char* argv[])
 {
     SDL_Init(SDL_INIT_VIDEO);
-    // Renseigner la taille d'un bloc
-    int cote = 25;
-    // Renseigner le temps voulu entre 2 affichages (en ms)
-    int time_update = 100;
+    int cote = 25;                                                                                  // Renseigner la taille d'un bloc
+    int time_update = 100;                                                                          // Renseigner le temps voulu entre 2 affichages (en ms)
     SDL_Renderer* rendu = NULL;
     SDL_Window* window = NULL;
-    // Renseigner le nom de la fenêtre
-    // Les dimensions de la fenêtre sont prédéfinies en fonction de cote, HEIGHT, WIDTH
-    window = SDL_CreateWindow("Water falling",
+    window = SDL_CreateWindow("Water falling",                                                      // Renseigner le nom de la fenêtre
                               SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED,
-                              (WIDTH-2)*cote+2,
+                              (WIDTH-2)*cote+2,                                                     // Les dimensions de la fenêtre sont prédéfinies en fonction de cote, HEIGHT, WIDTH
                               (HEIGHT-2)*cote+2,
                               SDL_WINDOW_SHOWN);
     rendu = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-
     // Définition de la matrice M initiale
     /*
         int M[HEIGHT][WIDTH] = {{70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70},
@@ -60,28 +55,22 @@ int WinMain(int argc, char* argv[])
             {70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70}
         };
     */
-    int M[HEIGHT][WIDTH];
-    matrice(M);
-
-    // Paramètre de parité d'itération
-    int numite=1;
-    // Boucles
-    bool running = true;
-    // Type de bloc sélectionné
+    int M[HEIGHT][WIDTH];                                                                           // Initialisation d'une matrice de dimension WIDTH*HEIGHT
+    matrice(M);                                                                                     // Remplissage de la matrice
+    int numite=1;                                                                                   // Paramètre de parité d'itération
+    bool running = true;                                                                            // Boucles
     int index = 0;
     while (running)
     {
         SDL_Event event;
-        int x,y;
+        int x,y;                                                                                    // Placement d'un nouveau pixel de type index
         while(SDL_PollEvent(&event))
         {
-            // Fermeture de la fenêtre si on appuie sur la croix
-            if (event.type == SDL_QUIT)
+            if (event.type == SDL_QUIT )                                                            // Fermeture de la fenêtre si on appuie sur la croix
             {
                 running = false;
                 break;
             }
-            // Placement d'un nouveau pixel de type index
             if (event.type == SDL_MOUSEBUTTONDOWN)
             {
                 if (event.button.button==SDL_BUTTON_LEFT)
@@ -96,19 +85,20 @@ int WinMain(int argc, char* argv[])
                 printf("%c",'hey');
                 switch(event.key.keysym.sym)
                 {
-                // Fermeture de la fenêtre si on appuie sur échap
-                case SDLK_ESCAPE :
+                case SDLK_ESCAPE :                                                                  // Fermeture de la fenêtre si on appuie sur échap
                     running = false;
                     break;
-                // Changement de la valeur de index selon la touche choisie
-                case SDLK_KP_0:
+                case SDLK_KP_0:                                                                     // Changement de la valeur de index selon la touche choisie
                     index = 0;
                     break;
                 case SDLK_KP_1:
-                    index = 1;
+                    index = 15;
                     break;
                 case SDLK_KP_2:
-                    index = 20+numite;
+                    index = 20+numite;                                                              // Prise en compte de la parité pour les matières concernées
+                    break;
+                case SDLK_KP_3:
+                    index = 10;
                     break;
                 case SDLK_KP_7:
                     index = 70;
@@ -122,22 +112,16 @@ int WinMain(int argc, char* argv[])
                 case SDLK_KP_5:
                     index = 50;
                     break;
-                case SDLK_KP_3:
-                    index = 10;
-                    break;
                 default :
                     break;
                 }
             }
         }
-        // Appel de la fonction permettant de mettre à jour M
-        change(M, numite);
-        // Affichage de la nouvelle matrice M
-        update_affichage(M, rendu, cote);
+        change(M, numite);                                                                          // Appel de la fonction permettant de mettre à jour M
+        update_affichage(M, rendu, cote);                                                           // Affichage de la nouvelle matrice M
         SDL_RenderPresent(rendu);
         SDL_Delay(time_update);
-        // Changement de parité pour la prochaine itération
-        numite=-numite;
+        numite=-numite;                                                                            // Changement de parité pour la prochaine itération
     }
     SDL_DestroyRenderer(rendu);
     SDL_DestroyWindow(window);
