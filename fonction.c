@@ -16,7 +16,7 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
 /* === Déplacement de l'eau === */
 /* ============================ */
 
-    if (M[i][j] == 1)                                                                           // Si la case est de l'eau
+    if (M[i][j] == 15)                                                                           // Si la case est de l'eau
     {
         /* -------------------------- */
         /* --- Extinction du feu --- */
@@ -329,7 +329,7 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
     {
         for(int l=0; l<WIDTH-2; l++)
         {
-            if (M[k+1][l+1]==1)                                                                  // Pour l'eau
+            if (M[k+1][l+1]==15)                                                                 // Pour l'eau
                 SDL_SetRenderDrawColor(rendu, 0, 0, 255, SDL_ALPHA_OPAQUE);
             else if (M[k+1][l+1]==0)                                                             // Pour l'air
                 SDL_SetRenderDrawColor(rendu, 0, 0, 0, SDL_ALPHA_OPAQUE);
