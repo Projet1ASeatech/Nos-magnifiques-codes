@@ -137,10 +137,10 @@ int WinMain(int argc, char* argv[])
                     index = 80+numite;
                     break;
                 case SDLK_KP_9:
-                    index = 90+numite;
+                    index = 910+numite;
                     break;
                 case SDLK_9:
-                    index = 90+numite;
+                    index = 910+numite;
                     break;
                 default :
                     break;
