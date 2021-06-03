@@ -118,72 +118,72 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
         /* ------------------------------------------- */
         /* --- Propagation du feu dans du bois sec --- */
         /* ------------------------------------------- */
-        if (M[i-1][j] == 90)                                                                 	// Test possibilité de déplacement vers le haut
+        if (M[i-1][j] == 900-numite)                                                                 	// Test possibilité de déplacement vers le haut
         {
             M[i-1][j] = 80+numite;
         }
-        else if (M[i+1][j]==90)                                                                 // Test possibilité de déplacement vers le bas
+        else if (M[i+1][j] == 900-numite)                                                                 // Test possibilité de déplacement vers le bas
         {
             M[i+1][j]=80+numite;
         }
-        else if (M[i-1][j+numite] ==90)                                                         // Test possibilité de déplacement en diagonale haute côté parité
+        else if (M[i-1][j+numite] == 900-numite)                                                         // Test possibilité de déplacement en diagonale haute côté parité
         {
             M[i-1][j+numite] = 80+numite;
         }
-        else if (M[i-1][j-numite] ==90)                                                         // Test possibilité de déplacement en diagonale haute côté opposé parité
+        else if (M[i-1][j-numite] == 900-numite)                                                         // Test possibilité de déplacement en diagonale haute côté opposé parité
         {
             M[i-1][j-numite] = 80+numite;
         }
-        else if (M[i+1][j+numite] ==90)                                                         // Test possibilité de déplacement en diagonale basse côté parité
+        else if (M[i+1][j+numite] == 900-numite)                                                         // Test possibilité de déplacement en diagonale basse côté parité
         {
             M[i+1][j+numite] = 80+numite;
         }
-        else if (M[i+1][j-numite] ==90)                                                         // Test possibilité de déplacement en diagonale basse côté opposé parité
+        else if (M[i+1][j-numite] == 90-numite)                                                         // Test possibilité de déplacement en diagonale basse côté opposé parité
         {
             M[i+1][j-numite] = 80+numite;
         }
-        else if (M[i][j+numite] ==90)                                                           // Test possibilité de déplacement de côté parité
+        else if (M[i][j+numite] == 90-numite)                                                           // Test possibilité de déplacement de côté parité
         {
             M[i][j+numite] = 80+numite;
         }
-        else if (M[i][j-numite] ==90)                                                           // Test possibilité de déplacement de côté opposé parité
+        else if (M[i][j-numite] == 90-numite)                                                           // Test possibilité de déplacement de côté opposé parité
         {
             M[i][j-numite] = 80+numite;
         }
-        /* ----------------------- */
-        /* --- Séchage du bois --- */
-        /* ----------------------- */
-        else if (M[i-1][j] ==89)
+/* ----------------------- */
+/* --- Séchage du bois --- */
+/* ----------------------- */
+        else if (M[i-1][j] == 910-numite)
         {
-            M[i-1][j] = 90;
+            M[i-1][j] = 900+numite;
         }
-        else if (M[i+1][j]==89)
+        else if (M[i+1][j] == 910-numite)
         {
-            M[i+1][j]=90;
+            M[i+1][j]=900+numite;
         }
-        else if (M[i-1][j+numite] == 89)
+        else if (M[i-1][j+numite] == 910-numite)
         {
-            M[i-1][j+numite] = 90;
+            M[i-1][j+numite] = 900+numite;
         }
-        else if (M[i-1][j-numite] == 89)
+        else if (M[i-1][j-numite] == 910-numite)
         {
-            M[i-1][j-numite] = 90;
+            M[i-1][j-numite] = 900+numite;
         }
-        else if (M[i+1][j+numite] == 89)
+        else if (M[i+1][j+numite] == 910-numite)
         {
-            M[i+1][j+numite] = 90;
+            M[i+1][j+numite] = 900+numite;
         }
-        else if (M[i+1][j-numite] == 89)
+        else if (M[i+1][j-numite] == 910-numite)
         {
-            M[i+1][j-numite] = 90;
+            M[i+1][j-numite] = 900+numite;
         }
-        else if (M[i][j+numite] == 89)
+        else if (M[i][j+numite] == 910-numite)
         {
-            M[i][j+numite] = 90;
+            M[i][j+numite] = 900+numite;
         }
-        else if (M[i][j-numite] == 89)
+        else if (M[i][j-numite] == 910-numite)
         {
-            M[i][j-numite] = 90;
+            M[i][j-numite] = 900+numite;
         }
     }
 /* ============================ */
