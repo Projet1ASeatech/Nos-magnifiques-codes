@@ -142,6 +142,9 @@ int WinMain(int argc, char* argv[])
                 case SDLK_6:
                     index = 910+numite;
                     break;
+                case SDLK_TAB:                                                                     // permet de reset la page en plus du bouton preset
+                    matrice(M);
+                    break;
                 default :
                     break;
                 }
