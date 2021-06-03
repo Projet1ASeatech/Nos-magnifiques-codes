@@ -23,7 +23,7 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
         /* -------------------------- */
         if (M[i+1][j] == 79 || M[i+1][j] == 81)                                                 // Si la case en-dessous est du feu
         {
-            M[i+1][j] = 89;                                                                     // On éteint le feu qui redevient du bois
+            M[i+1][j] = 910+numite;                                                             // On éteint le feu qui redevient du bois
             M[i][j] = 20+numite;                                                                // L'eau devient de la vapeur
         }
         else if (M[i+1][j] < M[i][j])                                                           // Test possibilité de déplacement vers le bas
@@ -138,15 +138,15 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
         {
             M[i+1][j+numite] = 80+numite;
         }
-        else if (M[i+1][j-numite] == 90-numite)                                                         // Test possibilité de déplacement en diagonale basse côté opposé parité
+        else if (M[i+1][j-numite] == 900-numite)                                                         // Test possibilité de déplacement en diagonale basse côté opposé parité
         {
             M[i+1][j-numite] = 80+numite;
         }
-        else if (M[i][j+numite] == 90-numite)                                                           // Test possibilité de déplacement de côté parité
+        else if (M[i][j+numite] == 900-numite)                                                           // Test possibilité de déplacement de côté parité
         {
             M[i][j+numite] = 80+numite;
         }
-        else if (M[i][j-numite] == 90-numite)                                                           // Test possibilité de déplacement de côté opposé parité
+        else if (M[i][j-numite] == 900-numite)                                                           // Test possibilité de déplacement de côté opposé parité
         {
             M[i][j-numite] = 80+numite;
         }
@@ -185,15 +185,19 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
         {
             M[i][j-numite] = 900+numite;
         }
+        else
+        {
+            M[i][j] = 80+numite;
+        }
     }
 /* ============================ */
 /* === Déplacement du sable === */
 /* ============================ */
-    else if (M[i][j] == 50)                                                                     // Si la case est du feu
+    else if (M[i][j] == 50)                                                                     // Si la case est du sable
     {
-        if (M[i+1][j] == 79 || M[i+1][j] == 81)
+        if (M[i+1][j] == 80+numite || M[i+1][j] == 80-numite)
         {
-            M[i+1][j] = 89;                                                                     // On éteint le feu qui redevient du bois
+            M[i+1][j] = 910+numite;                                                             // On éteint le feu qui redevient du bois
         }
         else if (M[i+1][j] < M[i][j])                                                           // Test possibilité de déplacement vers le bas
         {
@@ -337,9 +341,13 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
                 SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
             else if (M[k+1][l+1]==81)                                                            // Pour le feu
                 SDL_SetRenderDrawColor(rendu, 255, 165, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==89)                                                            // Pour le bois
+            else if (M[k+1][l+1]==899)                                                            // Pour le bois
                 SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
-            else if (M[k+1][l+1]==90)                                                            // Pour le bois
+            else if (M[k+1][l+1]==901)                                                            // Pour le bois
+                SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==911)                                                            // Pour le bois
+                SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
+            else if (M[k+1][l+1]==909)                                                            // Pour le bois
                 SDL_SetRenderDrawColor(rendu, 88, 41, 0, SDL_ALPHA_OPAQUE);
             else if (M[k+1][l+1]==70)                                                            // Pour le mur
                 SDL_SetRenderDrawColor(rendu, 100, 100, 100, SDL_ALPHA_OPAQUE);
