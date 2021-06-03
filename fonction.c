@@ -278,13 +278,13 @@ void matrice(int M[HEIGHT][WIDTH])
 {
     for (int i=0; i<HEIGHT; i++)
     {
-        M[i][0]=7;
-        M[i][WIDTH-1]=7;
+        M[i][0]=70;
+        M[i][WIDTH-1]=70;
     }
     for (int j=0; j<WIDTH; j++)
     {
-        M[0][j]=7;
-        M[HEIGHT-1][j]=7;
+        M[0][j]=70;
+        M[HEIGHT-1][j]=70;
     }
     for (int p=1; p<HEIGHT-1; p++)
     {
