@@ -94,10 +94,10 @@ int WinMain(int argc, char* argv[])
                 case SDLK_ESCAPE :                                                                  // Fermeture de la fenêtre si on appuie sur échap
                     running = false;
                     break;
-                case SDLK_KP_0:                                                                     // Changement de la valeur de index selon la touche choisie
+                case SDLK_KP_5:                                                                     // Changement de la valeur de index selon la touche choisie
                     index = 0;
                     break;
-                case SDLK_0:
+                case SDLK_5:
                     index = 0;
                     break;
                 case SDLK_KP_1:
@@ -106,40 +106,40 @@ int WinMain(int argc, char* argv[])
                 case SDLK_1:
                     index = 15;
                     break;
-                case SDLK_KP_2:
+                case SDLK_KP_8:
                     index = 20+numite;                                                              // Prise en compte de la parité pour les matières concernées
                     break;
-                case SDLK_2:
+                case SDLK_8:
                     index = 20+numite;
                     break;
-                case SDLK_KP_3:
+                case SDLK_KP_2:
                     index = 10;
+                    break;
+                case SDLK_2:
+                    index = 10;
+                    break;
+                case SDLK_KP_3:
+                    index = 50;
                     break;
                 case SDLK_3:
-                    index = 10;
-                    break;
-                case SDLK_KP_5:
                     index = 50;
                     break;
-                case SDLK_5:
-                    index = 50;
+                case SDLK_KP_4:
+                    index = 70;
+                    break;
+                case SDLK_4:
+                    index = 70;
                     break;
                 case SDLK_KP_7:
-                    index = 70;
+                    index = 80+numite;
                     break;
                 case SDLK_7:
-                    index = 70;
-                    break;
-                case SDLK_KP_8:
                     index = 80+numite;
                     break;
-                case SDLK_8:
-                    index = 80+numite;
-                    break;
-                case SDLK_KP_9:
+                case SDLK_KP_6:
                     index = 910+numite;
                     break;
-                case SDLK_9:
+                case SDLK_6:
                     index = 910+numite;
                     break;
                 default :
