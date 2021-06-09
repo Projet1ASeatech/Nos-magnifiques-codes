@@ -23,29 +23,29 @@ int WinMain(int argc, char* argv[])
                               (HEIGHT-2)*cote+2,
                               SDL_WINDOW_SHOWN);
     rendu = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-    
+
     SDL_Surface *surface;
     surface = SDL_LoadBMP("./img/logo.bmp");
     SDL_SetWindowIcon(window, surface);
     SDL_FreeSurface(surface);
-    
+
     // Définition de la matrice M initiale
-    /*
+
         int M[HEIGHT][WIDTH] = {{70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70},
             {70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70},
-            {70,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,70},
-            {70,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,70},
-            {70,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,70},
-            {70,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,70},
-            {70,0,0,0,70,0,0,1,1,1,1,1,1,1,0,0,0,0,0,70},
-            {70,0,0,70,0,70,0,0,1,1,1,1,1,0,0,0,0,0,0,70},
-            {70,0,0,70,0,0,0,70,0,1,1,1,0,0,0,0,0,0,0,70},
-            {70,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,70},
+            {70,0,0,0,0,0,0,0,19,19,0,19,19,0,0,0,0,0,0,70},
+            {70,0,0,0,0,0,0,19,19,19,19,19,19,19,0,0,0,0,0,70},
+            {70,0,0,0,0,0,19,19,19,19,19,19,19,19,19,0,0,0,0,70},
+            {70,0,0,0,0,0,19,19,19,19,19,19,19,19,19,0,0,0,0,70},
+            {70,0,0,0,70,0,0,19,19,19,19,19,19,19,0,0,0,0,0,70},
+            {70,0,0,70,0,70,0,0,19,19,19,19,19,0,0,0,0,0,0,70},
+            {70,0,0,70,0,0,0,70,0,19,19,19,0,0,0,0,0,0,0,70},
+            {70,0,0,0,0,0,0,0,0,0,19,0,0,0,0,0,0,0,0,70},
             {70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70},
             {70,0,0,0,0,0,0,0,0,0,70,0,0,0,0,0,0,0,0,70},
             {70,0,0,0,0,0,0,0,0,0,70,70,0,0,0,0,0,0,0,70},
             {70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70},
-            {70,0,0,19,19,19,0,0,0,0,0,0,0,0,70,70,0,0,0,70},
+            {70,0,0,9,9,9,0,0,0,0,0,0,0,0,70,70,0,0,0,70},
             {70,0,0,0,0,0,0,0,0,0,0,0,0,70,70,0,0,0,0,70},
             {70,0,911,911,0,0,0,0,0,0,0,0,70,70,0,0,0,0,0,70},
             {70,0,911,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70},
@@ -60,9 +60,10 @@ int WinMain(int argc, char* argv[])
             {70,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,70},
             {70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70}
         };
-    */
+    /*
     int M[HEIGHT][WIDTH];                                                                           // Initialisation d'une matrice de dimension WIDTH*HEIGHT
-    matrice(M);                                                                                     // Remplissage de la matrice
+    matrice(M);
+    */                                                                                                // Remplissage de la matrice
     int numite=1;                                                                                   // Paramètre de parité d'itération
     bool running = true;                                                                            // Boucles
     int index = 0;
@@ -88,41 +89,34 @@ int WinMain(int argc, char* argv[])
             }
             if (event.type == SDL_KEYDOWN )
             {
-                printf("%c",'hey');
                 switch(event.key.keysym.sym)
                 {
                 case SDLK_ESCAPE :                                                                  // Fermeture de la fenêtre si on appuie sur échap
                     running = false;
                     break;
-                case SDLK_KP_5:                                                                     // Changement de la valeur de index selon la touche choisie
+                case SDLK_KP_0:                                                                     // Changement de la valeur de index selon la touche choisie
                     index = 0;
                     break;
-                case SDLK_5:
+                case SDLK_0:
                     index = 0;
                     break;
                 case SDLK_KP_1:
-                    index = 15;
+                    index = 20+numite;
                     break;
                 case SDLK_1:
-                    index = 15;
-                    break;
-                case SDLK_KP_8:
-                    index = 20+numite;                                                              // Prise en compte de la parité pour les matières concernées
-                    break;
-                case SDLK_8:
                     index = 20+numite;
                     break;
                 case SDLK_KP_2:
-                    index = 10;
+                    index = 10+numite;
                     break;
                 case SDLK_2:
-                    index = 10;
+                    index = 10+numite;
                     break;
                 case SDLK_KP_3:
-                    index = 50;
+                    index = 15+numite;
                     break;
                 case SDLK_3:
-                    index = 50;
+                    index = 15+numite;
                     break;
                 case SDLK_KP_4:
                     index = 70;
@@ -130,20 +124,32 @@ int WinMain(int argc, char* argv[])
                 case SDLK_4:
                     index = 70;
                     break;
-                case SDLK_KP_7:
-                    index = 80+numite;
+                case SDLK_KP_5:
+                    index = 50;
                     break;
-                case SDLK_7:
-                    index = 80+numite;
+                case SDLK_5:
+                    index = 50;
                     break;
                 case SDLK_KP_6:
-                    index = 910+numite;
+                    index = 910-numite;
                     break;
                 case SDLK_6:
-                    index = 910+numite;
+                    index = 910-numite;
+                    break;
+                case SDLK_KP_7:
+                    index = 80-numite;
+                    break;
+                case SDLK_7:
+                    index = 80-numite;
                     break;
                 case SDLK_TAB:                                                                     // permet de reset la page en plus du bouton preset
                     matrice(M);
+                    break;
+                case SDLK_KP_8:
+                    index = 20+numite;                                                              // Prise en compte de la parité pour les matières concernées
+                    break;
+                case SDLK_8:
+                    index = 20+numite;
                     break;
                 default :
                     break;
@@ -151,7 +157,7 @@ int WinMain(int argc, char* argv[])
             }
         }
         change(M, numite);                                                                          // Appel de la fonction permettant de mettre à jour M
-        update_affichage(M, rendu, cote);                                                           // Affichage de la nouvelle matrice M
+        update_affichage(M, rendu, cote, numite);                                                           // Affichage de la nouvelle matrice M
         SDL_RenderPresent(rendu);
         SDL_Delay(time_update);
         numite=-numite;                                                                            // Changement de parité pour la prochaine itération
