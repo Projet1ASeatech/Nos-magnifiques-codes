@@ -1,9 +1,8 @@
 #ifndef FONCTION_H
 #define FONCTION_H
 #include <SDL2/SDL.h>
-#define WIDTH 20
-#define HEIGHT 28
-
+int WIDTH;
+int HEIGHT;
 
 #include <stdio.h>
 #include <stdlib.h>
