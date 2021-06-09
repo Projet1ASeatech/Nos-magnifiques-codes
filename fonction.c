@@ -325,7 +325,7 @@ void create_window(SDL_Renderer* rendu, int cote, SDL_Rect fenetre)
 /* ###      Fonction update_affichage    ### */
 /* ###        Met à jour l'affichage     ### */
 /* ######################################### */
-void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote, int numite)
+void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
 {
     for(int k=0; k<HEIGHT-2; k++)
     {
@@ -364,7 +364,6 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote, int n
             else
             {
                 SDL_SetRenderDrawColor(rendu, 255, 255, 255, SDL_ALPHA_OPAQUE);
-                printf("%d\n",M[k+1][l+1]);
             }
 
             SDL_Rect carre;
