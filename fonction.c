@@ -3,9 +3,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <SDL2/SDL.h>
-#define WIDTH 20
-#define HEIGHT 28
-
 
 /* ##################################### */
 /* ###       Fonction gravity        ### */
@@ -367,8 +364,8 @@ void update_affichage(int M[HEIGHT][WIDTH], SDL_Renderer* rendu, int cote)
             }
 
             SDL_Rect carre;
-            carre.x = 1+(l)*cote;
-            carre.y = 1+(k)*cote;
+            carre.x = 10+(l)*cote;
+            carre.y = 10+(k)*cote;
             carre.w = cote;
             carre.h = cote;
             SDL_RenderDrawRect(rendu, &carre);
