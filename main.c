@@ -157,7 +157,7 @@ int WinMain(int argc, char* argv[])
             }
         }
         change(M, numite);                                                                          // Appel de la fonction permettant de mettre à jour M
-        update_affichage(M, rendu, cote, numite);                                                           // Affichage de la nouvelle matrice M
+        update_affichage(M, rendu, cote);                                                           // Affichage de la nouvelle matrice M
         SDL_RenderPresent(rendu);
         SDL_Delay(time_update);
         numite=-numite;                                                                            // Changement de parité pour la prochaine itération
