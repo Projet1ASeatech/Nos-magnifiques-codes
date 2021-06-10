@@ -252,6 +252,13 @@ void gravity(int M[HEIGHT][WIDTH], int i, int j, int numite)
             M[i][j] = 15+numite;
         }
     }
+    else if (M[i][j] == 910-numite || M[i][j] == 900-numite)
+    {
+        if (M[i-1][j] == 50)
+        {
+            M[i][j] = M[i][j]+2*numite;
+        }
+    }
 }
 
 /* ################################################ */
