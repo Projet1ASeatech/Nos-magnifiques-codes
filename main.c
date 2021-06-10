@@ -220,7 +220,7 @@ int WinMain(int argc, char* argv[])
                     }
                     if (event.motion.x>=296 && event.motion.x<=371)
                     {
-                        index = 10;
+                        index = 10+numite;
                         break;
                     }
                     if (event.motion.x>=390 && event.motion.x<=465)
@@ -243,23 +243,23 @@ int WinMain(int argc, char* argv[])
                 case SDLK_5:
                     index = 0;
                     break;
-                case SDLK_KP_1:
-                    index = 15;
-                    break;
-                case SDLK_1:
-                    index = 15;
-                    break;
-                case SDLK_KP_8:
-                    index = 20+numite;                                                              // Prise en compte de la parité pour les matières concernées
-                    break;
-                case SDLK_8:
-                    index = 20+numite;
-                    break;
                 case SDLK_KP_2:
-                    index = 10;
+                    index = 15+numite;
                     break;
                 case SDLK_2:
-                    index = 10;
+                    index = 15+numite;
+                    break;
+                case SDLK_KP_1:
+                    index = 20+numite;                                                              // Prise en compte de la parité pour les matières concernées
+                    break;
+                case SDLK_1:
+                    index = 20+numite;
+                    break;
+                case SDLK_KP_8:
+                    index = 10+numite;
+                    break;
+                case SDLK_8:
+                    index = 10+numite;
                     break;
                 case SDLK_KP_3:
                     index = 50;
@@ -306,4 +306,3 @@ int WinMain(int argc, char* argv[])
 
     return 0;
 }
-
